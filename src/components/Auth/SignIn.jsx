@@ -1,13 +1,13 @@
 import React from 'react';
-import Button from '../Button/Button';
-import Input from '../Input/Input';
-import ModalContainer from '../ModalContainer/ModalContainer';
+import Button from '../../components/Button/Button';
+import Input from '../../components/Input/Input';
+import ModalContainer from '../../components/ModalContainer/ModalContainer';
 import '../ModalContainer/ModalContainer.css';
 
 const SignIn = () => {
     return (
         <ModalContainer>
-            <h2 className="s-header">
+            <h2 className="mdl-content-header">
                 Login into BeranaBug Enterprise Issue Tracking System
             </h2>
             <Input type="email" name="email" id="email" label="Email" />
@@ -18,8 +18,10 @@ const SignIn = () => {
                 id="password"
                 label="Password"
             />
-            <div className="s-btn-container">
-                <Button className="btn btn-default">Sign Up</Button>
+            <div className="mdl-btn-container">
+                <Button className="btn btn-default btn-link">
+                    <a href="/signup">Sign Up</a>
+                </Button>
                 <Button className="btn btn-primary">Sign In</Button>
             </div>
         </ModalContainer>

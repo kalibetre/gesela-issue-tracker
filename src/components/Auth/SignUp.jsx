@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '../Button/Button';
-import Input from '../Input/Input';
-import ModalContainer from '../ModalContainer/ModalContainer';
+import Button from '../../components/Button/Button';
+import Input from '../../components/Input/Input';
+import ModalContainer from '../../components/ModalContainer/ModalContainer';
 import '../ModalContainer/ModalContainer.css';
 
 const SignUp = () => {
@@ -29,7 +29,9 @@ const SignUp = () => {
                 label="Repeat Password"
             />
             <div className="mdl-btn-container">
-                <Button className="btn btn-default">Sign In</Button>
+                <Button className="btn btn-default btn-link">
+                    <a href="/signin">Sign In</a>
+                </Button>
                 <Button className="btn btn-primary">Sign Up</Button>
             </div>
         </ModalContainer>
