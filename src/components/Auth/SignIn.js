@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import ModalContainer from '../ModalContainer/ModalContainer';
-import './SignIn.css';
+import '../ModalContainer/ModalContainer.css';
 
 const SignIn = () => {
     return (
@@ -10,7 +10,7 @@ const SignIn = () => {
             <h2 className="s-header">
                 Login into BeranaBug Enterprise Issue Tracking System
             </h2>
-            <Input type="text" name="email" id="email" label="Email" />
+            <Input type="email" name="email" id="email" label="Email" />
             <Input
                 type="password"
                 placeholder=""
