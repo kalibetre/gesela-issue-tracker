@@ -11,17 +11,17 @@
 }
 
 .btn-primary {
-	background: #1976D2;
+	background: #2492A2;
 	color: white;
 	border: 0px;
 }
 
 .btn-primary:hover {
-	background: #1565C0;
+	background: #1E7A87;
 }
 
 .btn-primary:active {
-	background: #0D47A1;
+	background: #1A6A76;
 }
 
 .btn-default {
