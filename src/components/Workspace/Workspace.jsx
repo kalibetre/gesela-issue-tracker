@@ -10,7 +10,7 @@ const Workspace = (props) => {
 				</h2>
 			</div>
 			<main className="wks-main">
-				{props.title}
+				{props.children}
 			</main>
 		</section>
 	)
