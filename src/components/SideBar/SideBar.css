@@ -1,0 +1,29 @@
+.sdb-container {
+	height: 100%;
+	width: 100%;
+}
+
+.sdb-header {
+	display: flex;
+	justify-content: flex-start;
+	padding: 10px;
+	border-bottom: 0.1px solid #8c8a8a33;
+}
+
+.sdb-logo {
+	width: 80px;
+	height: 30px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.sdb-menu {
+	padding: 10px;
+}
+
+@media screen and (max-width: 600px) {
+	.sdb-container {
+		width: 48px;
+	}
+}
