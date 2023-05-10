@@ -23,9 +23,3 @@
 	height: calc(100% - 50px);
 	overflow-y: auto;
 }
-
-@media screen and (max-width: 600px) {
-	.sdb-container {
-		width: 48px;
-	}
-}

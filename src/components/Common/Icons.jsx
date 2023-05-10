@@ -100,6 +100,16 @@ export const AboutIcon = () => {
 	)
 }
 
+export const MenuIcon = () => {
+	return (
+		<img
+				style={{ width: '100%', height: '100%' }}
+				src="/images/menu.svg"
+				alt="Menu Icon"
+		/>
+	)
+}
+
 export const ICONS = {
 	issues: <IssuesIcon />,
 	notifications: <NotificationsIcon />,
@@ -111,4 +121,5 @@ export const ICONS = {
 	customers: <CustomersIcon />,
 	help: <HelpIcon />,
 	about: <AboutIcon />,
+	menu: <MenuIcon />,
 }

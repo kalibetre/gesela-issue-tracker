@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .ap-content {
@@ -19,6 +20,14 @@
   border-right: 0.1px solid #8c8a8a33;
 }
 
+.ap-sidebar-floating {
+  display: none;
+}
+
+.ap-overlay {
+  display: none;
+}
+
 .ap-main-container {
   width: calc(100vw - 250px);
   height: 100%;
@@ -28,6 +37,7 @@
   height: 50px;
   width: 100%;
   padding: 10px;
+  display: flex;
 }
 
 .ap-main {
@@ -53,4 +63,65 @@
   align-items: center;
   padding: 10px 0px;
   margin-bottom: 30px;
+}
+
+.ap-menu-toggle {
+  display: none;
+  border-radius: 50%;
+  background-color: #fff;
+  width: 38px;
+  height: 38px;
+  padding: 8px;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.ap-menu-toggle:hover {
+  background-color: #f0f0f0;
+}
+
+.ap-menu-toggle:focus {
+  outline: none;
+}
+
+.ap-menu-toggle:active {
+  background-color: #e0e0e0;
+}
+
+@media screen and (max-width: 768px) {
+  .ap-sidebar {
+    display: none;
+  }
+
+  .ap-main-container {
+    width: 100%;
+  }
+
+  .ap-menu-toggle {
+    display: block;
+  }
+
+  .ap-sidebar-floating {
+    display: block;
+    position: absolute;
+    width: 250px;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+  }
+
+  .ap-overlay {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #36363643;
+  }
 }
