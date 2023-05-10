@@ -4,15 +4,24 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './components/App/App';
 import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
+import Workspace from './components/Workspace/Workspace';
 import './css-reset.css';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([
-    { path: '/', element: <App /> },
-    { path: '/signin', element: <SignIn /> },
-    { path: '/signup', element: <SignUp /> },
+    { path: '', element: <App />, children: [
+        { path: '', element: <Workspace title="All Issues" /> },
+    ] },
+    { path: 'signin', element: <SignIn /> },
+    { path: 'signup', element: <SignUp /> },
+    {
+        path: 'issues', element: <App />, children: [
+            { path: '', element: <Workspace title="All Issues" /> },
+            { path: 'archived', element: <Workspace title="Archived Issues" /> }, 
+        ]
+    }
 ])
 
 root.render(

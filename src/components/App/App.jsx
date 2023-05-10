@@ -1,3 +1,4 @@
+import { Link, Outlet } from 'react-router-dom';
 import Button from '../Button/Button';
 import Header from '../Header/Header';
 import SideBar from '../SideBar/SideBar';
@@ -14,14 +15,19 @@ function App() {
                                 New Issue
                             </Button>
                         </div>
-                        <p>Menus</p>
+                        <div>
+                            <Link to="/issues">All Issues</Link>
+                            <Link to="/issues/archived">Archived Issues</Link>
+                        </div>
                     </SideBar>
                 </div>
                 <div className='ap-main-container'>
                     <div className="ap-header">
                         <Header title="All Issues">Header</Header>
                     </div>
-                    <main className="ap-main">Issues</main>
+                    <div className="ap-main">
+                        <Outlet />
+                    </div>
                 </div>
             </div>
             <footer className="ap-footer">
