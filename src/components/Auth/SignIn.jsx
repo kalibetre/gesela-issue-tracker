@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import ModalContainer from '../../components/ModalContainer/ModalContainer';
@@ -20,7 +21,7 @@ const SignIn = () => {
             />
             <div className="mdl-btn-container">
                 <Button className="btn btn-default btn-link">
-                    <a href="/signup">Sign Up</a>
+                    <Link to="/signup">Sign Up</Link>
                 </Button>
                 <Button className="btn btn-primary">Sign In</Button>
             </div>
