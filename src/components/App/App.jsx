@@ -1,3 +1,4 @@
+import Button from '../Button/Button';
 import Header from '../Header/Header';
 import SideBar from '../SideBar/SideBar';
 import './App.css';
@@ -8,6 +9,11 @@ function App() {
             <div className="ap-content">
                 <div className="ap-sidebar">
                     <SideBar>
+                        <div className="ap-new-issue-btn-container">
+                            <Button className="btn btn-primary">
+                                New Issue
+                            </Button>
+                        </div>
                         <p>Menus</p>
                     </SideBar>
                 </div>
