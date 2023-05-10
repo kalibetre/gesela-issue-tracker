@@ -19,7 +19,9 @@
 }
 
 .sdb-menu {
-	padding: 10px;
+	padding: 15px;
+	height: calc(100% - 50px);
+	overflow-y: auto;
 }
 
 @media screen and (max-width: 600px) {

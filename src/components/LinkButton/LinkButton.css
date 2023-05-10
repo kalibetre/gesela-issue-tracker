@@ -1,0 +1,24 @@
+.lb-link {
+	height: 36px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	font-size: 14px;
+	padding: 0px 15px;
+	border-radius: 4px;
+}
+
+.lb-active {
+	background-color: #2492A117;
+}
+
+.lb-link:hover {
+	background-color: #2492A117;
+}
+
+.lb-icon {
+	display: block;
+	width: 15px;
+	height: 15px;
+	margin-right: 10px;
+}
