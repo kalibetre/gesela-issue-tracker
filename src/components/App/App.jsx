@@ -5,11 +5,13 @@ import { ICONS } from '../Common/Icons';
 import Header from '../Header/Header';
 import LinkButton from '../LinkButton/LinkButton';
 import LinkGroup from '../LinkGroup/LinkGroup';
+import NewIssueModal from '../NewIssueModal/NewIssueModal';
 import SideBar from '../SideBar/SideBar';
 import './App.css';
 
 function App() {
     const [toggleSideBar, setToggleSideBar] = useState(false);
+    const [newIssueModalOpen, setNewIssueModalOpen] = useState(false);
 
     const handleToggleSideBar = () => {
         setToggleSideBar(!toggleSideBar);
@@ -18,7 +20,8 @@ function App() {
     const sideBar = (
         <SideBar>
             <div className="ap-new-issue-btn-container">
-                <Button className="btn btn-primary">
+                {newIssueModalOpen && (<NewIssueModal handleClose={() => setNewIssueModalOpen(false)} />)}
+                <Button className="btn btn-primary" onClick={() => setNewIssueModalOpen(true)}>
                     New Issue
                 </Button>
             </div>
