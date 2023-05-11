@@ -14,6 +14,9 @@ const Modal = (props) => {
 				<div className='modal-body'>
 						{props.children}
 				</div>
+				<div className="modal-footer">
+					{props.actions}
+				</div>
 			</div>
 		</div>, document.body
 	)
