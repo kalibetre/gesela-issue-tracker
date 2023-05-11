@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../components/Button/Button';
-import Input from '../../components/Input/Input';
-import ModalContainer from '../../components/ModalContainer/ModalContainer';
-import '../ModalContainer/ModalContainer.css';
+import Button from '../Button/Button';
+import { Input } from '../InputControls/InputControls';
+import ModalContainer from '../ModalContainer/ModalContainer';
 
 const SignUp = () => {
     return (
