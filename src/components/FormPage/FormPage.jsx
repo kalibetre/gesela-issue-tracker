@@ -1,8 +1,8 @@
 import React from 'react';
 import Logo from '../Logo/Logo';
-import './ModalContainer.css';
+import './FormPage.css';
 
-const ModalContainer = (props) => {
+const FormPage = (props) => {
     return (
         <div className="mc-container">
             <div className="mc-modal">
@@ -15,4 +15,4 @@ const ModalContainer = (props) => {
     );
 };
 
-export default ModalContainer;
+export default FormPage;

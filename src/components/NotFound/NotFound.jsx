@@ -1,11 +1,10 @@
 import React from 'react';
-import ModalContainer from '../ModalContainer/ModalContainer';
-import '../ModalContainer/ModalContainer.css';
+import FormPage from '../FormPage/FormPage';
 import './NotFound.css';
 
 const SignIn = () => {
     return (
-        <ModalContainer>
+        <FormPage>
             <div className='err-pg-container'>
                 <h2 className='err-pg-status'>
                     404
@@ -14,8 +13,7 @@ const SignIn = () => {
                     The page you are looking for does not exist
                 </h2> 
             </div>
-
-        </ModalContainer>
+        </FormPage>
     );
 };
 

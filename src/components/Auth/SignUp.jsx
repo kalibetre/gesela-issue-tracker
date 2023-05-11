@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
+import FormPage from '../FormPage/FormPage';
 import { Input } from '../InputControls/InputControls';
-import ModalContainer from '../ModalContainer/ModalContainer';
 
 const SignUp = () => {
     return (
-        <ModalContainer>
+        <FormPage>
             <h2 className="mdl-content-header">
                 Sign Up to get access to BeranaBug Enterprise Issue Tracking
                 System
@@ -34,7 +34,7 @@ const SignUp = () => {
                 </Button>
                 <Button className="btn btn-primary">Sign Up</Button>
             </div>
-        </ModalContainer>
+        </FormPage>
     );
 };
 
