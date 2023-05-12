@@ -6,9 +6,10 @@ import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
 import Issues from './components/Issues/Issues';
 import NotFound from './components/NotFound/NotFound';
+import Notifications from './components/Notifications/Notifications';
 import './css-reset.css';
 import './index.css';
-import { ISSUES_DATA } from './utils/data';
+import { ISSUES_DATA, NOTIFICATIONS } from './utils/data';
 import { filterByAttribute } from './utils/utils';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -78,6 +79,16 @@ const router = createBrowserRouter([
                         )}
                     />
                 ),
+            },
+        ],
+    },
+    {
+        path: 'notifications',
+        element: <App />,
+        children: [
+            {
+                path: '',
+                element: <Notifications notifications={NOTIFICATIONS} />,
             },
         ],
     },
