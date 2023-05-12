@@ -7,6 +7,8 @@ const status_class = {
     PENDING: 'isu-pending',
     'IN PROGRESS': 'isu-in-progress',
     COMPLETED: 'isu-completed',
+    ARCHIVED: 'isu-archived',
+    CLOSED: 'isu-closed',
 };
 
 const get_status_class = (status) => {

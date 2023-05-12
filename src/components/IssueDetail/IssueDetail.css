@@ -57,6 +57,16 @@
 	border-color: #586069;
 }
 
+.isu-archived {
+	color: #6a737d;
+	border-color: #6a737d;
+}
+
+.isu-closed {
+	color: #6f42c1;
+	border-color: #6f42c1;
+}
+
 .isu-notification-card-content {
 	display: flex;
 	flex-direction: column;
