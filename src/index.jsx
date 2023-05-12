@@ -6,9 +6,10 @@ import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
 import Issues from './components/Issues/Issues';
 import NotFound from './components/NotFound/NotFound';
-import Workspace from './components/Workspace/Workspace';
 import './css-reset.css';
 import './index.css';
+import { ISSUES_DATA } from './utils/data';
+import { filterByAttribute } from './utils/utils';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -16,7 +17,12 @@ const router = createBrowserRouter([
     {
         path: '',
         element: <App />,
-        children: [{ path: '', element: <Issues /> }],
+        children: [
+            {
+                path: '',
+                element: <Issues title="All Issues" issues={ISSUES_DATA} />,
+            },
+        ],
     },
     { path: 'signin', element: <SignIn /> },
     { path: 'signup', element: <SignUp /> },
@@ -24,10 +30,54 @@ const router = createBrowserRouter([
         path: 'issues',
         element: <App />,
         children: [
-            { path: '', element: <Issues /> },
+            {
+                path: '',
+                element: (
+                    <Issues
+                        title="All Issues"
+                        issues={ISSUES_DATA}
+                        groupBy="status"
+                    />
+                ),
+            },
+            {
+                path: 'draft',
+                element: (
+                    <Issues
+                        title="Draft Issues"
+                        issues={filterByAttribute(
+                            ISSUES_DATA,
+                            'status',
+                            'DRAFT'
+                        )}
+                    />
+                ),
+            },
             {
                 path: 'archived',
-                element: <Workspace title="Archived Issues" />,
+                element: (
+                    <Issues
+                        title="Archived Issues"
+                        issues={filterByAttribute(
+                            ISSUES_DATA,
+                            'status',
+                            'ARCHIVED'
+                        )}
+                    />
+                ),
+            },
+            {
+                path: 'closed',
+                element: (
+                    <Issues
+                        title="Closed Issues"
+                        issues={filterByAttribute(
+                            ISSUES_DATA,
+                            'status',
+                            'CLOSED'
+                        )}
+                    />
+                ),
             },
         ],
     },
