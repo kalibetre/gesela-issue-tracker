@@ -1,6 +1,7 @@
 import React from 'react'
 import { Input, Option, Select, TextArea } from '../InputControls/InputControls'
 import Modal from '../Modal/Modal'
+import './NewIssueModal.css'
 
 const departments = [
 	'Human Resources',
@@ -11,7 +12,7 @@ const departments = [
 const NewIssueModal = (props) => {
 	return (
 		<Modal 
-			title='Create New Issue' 
+			title='Edit Issue' 
 			handleClose={props.handleClose}
 			actions={
 				<>
