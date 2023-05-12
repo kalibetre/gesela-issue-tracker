@@ -13,19 +13,26 @@ import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([
-    { path: '', element: <App />, children: [
-        { path: '', element: <Issues /> },
-    ] },
+    {
+        path: '',
+        element: <App />,
+        children: [{ path: '', element: <Issues /> }],
+    },
     { path: 'signin', element: <SignIn /> },
     { path: 'signup', element: <SignUp /> },
     {
-        path: 'issues', element: <App />, children: [
+        path: 'issues',
+        element: <App />,
+        children: [
             { path: '', element: <Issues /> },
-            { path: 'archived', element: <Workspace title="Archived Issues" /> }, 
-        ]
+            {
+                path: 'archived',
+                element: <Workspace title="Archived Issues" />,
+            },
+        ],
     },
     { path: '*', element: <NotFound /> },
-])
+]);
 
 root.render(
     <React.StrictMode>

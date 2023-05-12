@@ -1,10 +1,8 @@
-import React from 'react'
-import './Avatar.css'
+import React from 'react';
+import './Avatar.css';
 
 const Avatar = () => {
-	return (
-		<div className="av-initial" >K</div>
-	)
-}
+    return <div className="av-initial">K</div>;
+};
 
-export default Avatar
+export default Avatar;
