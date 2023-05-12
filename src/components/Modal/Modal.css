@@ -1,18 +1,20 @@
 .modal-overlay {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: 1000;
 	width: 100vw;
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.5);
+	overflow: auto;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 .modal-container {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	z-index: 1001;
 	width: 90vw;
 	max-width: 600px;
@@ -79,16 +81,8 @@
 }
 
 @media screen and (max-width: 600px) {
-	.modal-container {
-		position: relative;
-		transform: none;
-		top: 0;
-		left: 0;
-		width: 94%;
-		margin: 3%;
-	}
-
 	.modal-overlay {
-		overflow: auto;
+		padding: 10px;
+		align-items: flex-start;
 	}
 }
