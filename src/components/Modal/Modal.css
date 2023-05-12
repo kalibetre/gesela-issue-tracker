@@ -62,10 +62,10 @@
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	gap: 25px;
-	padding: 0.5rem 1rem;
+	gap: 20px;
+	padding: 15px 10px;
 	border-top: 1px solid #ccc;
-	height: 48px;
+	height: 68px;
 	background-color: #cccccc77;
 	border-radius: 0px 0px 4px 4px;
 }
