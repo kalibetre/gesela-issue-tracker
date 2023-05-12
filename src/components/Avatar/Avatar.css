@@ -1,11 +1,85 @@
+.av-container {
+	position: relative;
+}
+
 .av-initial {
-	background-color: #12819a;
-	color: #fff;
-	width: 30px;
-	height: 30px;
+	background-color: #fff;
+	color: #12819a;
+	width: 35px;
+	height: 35px;
 	border-radius: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 18px;
+	cursor: default;
+	user-select: none;
+	border: 2px solid #12819a;
+}
+
+.av-initial:hover {
+	background-color: #12819a;
+	color: #fff;
+}
+
+.av-initial:active {
+	background-color: #0c5563;
+}
+
+.av-initial:focus {
+	outline: none;
+}
+
+.av-menu-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: transparent;
+	z-index: 1;
+}
+
+.av-menu {
+	position: absolute;
+	top: 53px;
+	right: 15px;
+	width: 200px;
+	padding: 15px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0px 3px 15px #12819a98;
+	z-index: 2;
+}
+
+.av-menu::before {
+	content: "";
+	position: absolute;
+	top: -8px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid #12819a98;
+}
+
+.av-menu h3 {
+	font-size: 16px;
+	margin: 0 0 10px 0;
+}
+
+.av-menu p {
+	font-size: 14px;
+	margin: 0;
+	padding-bottom: 20px;
+	border-bottom: 0.1px solid #8d8d8d98;
+}
+
+.av-menu-actions {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 20px 0px 0px 40%;
+	height: 48px;
 }
