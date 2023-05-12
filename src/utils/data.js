@@ -360,3 +360,27 @@ export const ISSUES_DATA = [
         ],
     },
 ];
+
+export const NOTIFICATIONS = [
+    {
+        id: 1,
+        user: 'Gabby Allcott',
+        date: '2021-01-01',
+        message: 'Issue created',
+        isRead: true,
+    },
+    {
+        id: 2,
+        user: 'Gabby Allcott',
+        date: '2021-01-01',
+        message: 'Issue assigned to Bobbie Turnell',
+        isRead: false,
+    },
+    {
+        id: 3,
+        user: 'Bobbie Turnell',
+        date: '2021-01-01',
+        message: 'Issue closed',
+        isRead: true,
+    },
+];
