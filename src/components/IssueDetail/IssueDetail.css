@@ -37,22 +37,22 @@
 	font-size: 12px;
 }
 
-.isu-detail-prog.isu-in-progress {
+.isu-in-progress {
 	color: #2cbe4e;
 	border-color: #2cbe4e;
 }
 
-.isu-detail-prog.isu-completed {
+.isu-completed {
 	color: #cb2431;
 	border-color: #cb2431;
 }
 
-.isu-detail-prog.isu-pending {
+.isu-pending {
 	color: #0366d6;
 	border-color: #0366d6;
 }
 
-.isu-detail-prog.isu-draft {
+.isu-draft {
 	color: #586069;
 	border-color: #586069;
 }

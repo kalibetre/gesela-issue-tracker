@@ -339,7 +339,7 @@ const Issues = () => {
                             {pendingCards.map((issue) => (
                                 <IssueCard
                                     key={issue.id}
-                                    {...issue}
+                                    issue={issue}
                                     onClick={() => handleOnCardClick(issue)}
                                 />
                             ))}
@@ -353,7 +353,7 @@ const Issues = () => {
                             {inProgressCards.map((issue) => (
                                 <IssueCard
                                     key={issue.id}
-                                    {...issue}
+                                    issue={issue}
                                     onClick={() => handleOnCardClick(issue)}
                                 />
                             ))}
@@ -367,7 +367,7 @@ const Issues = () => {
                             {completedCards.map((issue) => (
                                 <IssueCard
                                     key={issue.id}
-                                    {...issue}
+                                    issue={issue}
                                     onClick={() => handleOnCardClick(issue)}
                                 />
                             ))}

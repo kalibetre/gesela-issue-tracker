@@ -57,6 +57,24 @@
 	color: #4F4F4F;
 }
 
+.issue-card-footer {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100%;
+}
+
+.isu-card-prog {
+	text-transform: uppercase;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 0.1rem solid #e1e4e8;
+	padding: 5px 10px;
+	border-radius: 15px;
+	font-size: 10px;
+}
+
 @media screen and (max-width: 768px) {
 	.issue-card {
 		width: 100%;
