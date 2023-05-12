@@ -8,6 +8,7 @@
 	height: 100%;
 	border-radius: 4px;
 	flex-grow: 1;
+	font-size: 14px;
 }
 
 .btn-primary {
@@ -35,6 +36,20 @@
 
 .btn-default:active {
 	background: #EEEEEE;
+}
+
+.btn-danger {
+	background: #E74C3C;
+	color: white;
+	border: 0px;
+}
+
+.btn-danger:hover {
+	background: #D64535;
+}
+
+.btn-danger:active {
+	background: #C0392B;
 }
 
 .btn-link a {
