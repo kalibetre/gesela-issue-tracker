@@ -53,12 +53,4 @@
 		height: 100%;
 		border-radius: 0px;
 	}
-
-	.mdl-btn-container {
-		width: 100%;
-		flex-direction: column;
-		flex-flow: column-reverse;
-		gap: 15px;
-		align-items: center;
-	}
 }
