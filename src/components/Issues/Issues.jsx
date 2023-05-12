@@ -6,7 +6,6 @@ import Workspace from '../Workspace/Workspace';
 import './Issues.css';
 
 const Issues = (props) => {
-    const [openDetail, setOpenDetail] = useState(false);
     const [selectedIssue, setSelectedIssue] = useState(null);
     const { groupBy, issues } = props;
     let groupedIssues = null;
@@ -18,17 +17,12 @@ const Issues = (props) => {
         groupedIssues = { ALL: issues };
     }
 
-    const handleOnCardClick = (issue) => {
-        setOpenDetail(true);
-        setSelectedIssue(issue);
-    };
-
     return (
         <Workspace title={props.title}>
-            {openDetail && (
+            {selectedIssue && (
                 <IssueDetail
                     issue={selectedIssue}
-                    handleClose={() => setOpenDetail(false)}
+                    handleClose={() => setSelectedIssue(null)}
                 />
             )}
             <div className="issue-list-container">
@@ -50,7 +44,7 @@ const Issues = (props) => {
                                     <IssueCard
                                         key={issue.id}
                                         issue={issue}
-                                        onClick={() => handleOnCardClick(issue)}
+                                        onClick={() => setSelectedIssue(issue)}
                                     />
                                 ))}
                             </div>
