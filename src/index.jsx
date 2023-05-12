@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './components/App/App';
 import SignIn from './components/Auth/SignIn';
@@ -9,6 +10,7 @@ import NotFound from './components/NotFound/NotFound';
 import Notifications from './components/Notifications/Notifications';
 import './css-reset.css';
 import './index.css';
+import store from './store/store';
 import { ISSUES_DATA, NOTIFICATIONS } from './utils/data';
 import { filterByAttribute } from './utils/utils';
 
@@ -97,6 +99,8 @@ const router = createBrowserRouter([
 
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
     </React.StrictMode>
 );
