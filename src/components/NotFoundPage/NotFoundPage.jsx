@@ -1,8 +1,8 @@
 import React from 'react';
 import FormPage from '../FormPage/FormPage';
-import './NotFound.css';
+import './NotFoundPage.css';
 
-const SignIn = () => {
+const NotFoundPage = () => {
     return (
         <FormPage>
             <div className="err-pg-container">
@@ -15,4 +15,4 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
+export default NotFoundPage;
