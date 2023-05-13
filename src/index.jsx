@@ -6,7 +6,7 @@ import App from './components/App/App';
 import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
 import Issues from './components/Issues/Issues';
-import NotFound from './components/NotFound/NotFound';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import Notifications from './components/Notifications/Notifications';
 import './css-reset.css';
 import './index.css';
@@ -94,7 +94,7 @@ const router = createBrowserRouter([
             },
         ],
     },
-    { path: '*', element: <NotFound /> },
+    { path: '*', element: <NotFoundPage /> },
 ]);
 
 root.render(
