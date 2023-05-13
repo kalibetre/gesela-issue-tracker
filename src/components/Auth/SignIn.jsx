@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../api/authApi';
 import Button from '../../components/Button/Button';
+import useAuth from '../../hooks/useAuth';
 import { authFail, authSuccess, loginStart } from '../../store/authSlice';
 import FormPage from '../FormPage/FormPage';
 import { Input } from '../InputControls/InputControls';
+import LoadingPage from '../LoadingPage/LoadingPage';
 
 const SignIn = () => {
-    const { currentUser, loading } = useSelector((state) => state.auth);
+    const { currentUser, loading } = useAuth();
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -35,6 +37,8 @@ const SignIn = () => {
             dispatch(authFail(error));
         }
     };
+
+    if (loading) return <LoadingPage />;
 
     return (
         <FormPage>

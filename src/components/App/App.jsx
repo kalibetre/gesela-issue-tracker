@@ -1,27 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import Button from '../Button/Button';
 import { ICONS } from '../Common/Icons';
 import Header from '../Header/Header';
 import LinkButton from '../LinkButton/LinkButton';
 import LinkGroup from '../LinkGroup/LinkGroup';
+import LoadingPage from '../LoadingPage/LoadingPage';
 import NewIssueModal from '../NewIssueModal/NewIssueModal';
 import SideBar from '../SideBar/SideBar';
 import './App.css';
 
 function App() {
-    const { currentUser } = useSelector((state) => state.auth);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!currentUser) {
-            navigate('/signin');
-        }
-    }, [currentUser, navigate]);
-
+    const { loading } = useAuth;
     const [toggleSideBar, setToggleSideBar] = useState(false);
     const [newIssueModalOpen, setNewIssueModalOpen] = useState(false);
+
+    if (loading) return <LoadingPage />;
 
     const handleToggleSideBar = () => {
         setToggleSideBar(!toggleSideBar);
