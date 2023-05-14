@@ -24,3 +24,12 @@ export const getFormattedDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', DATE_OPTIONS);
 };
+
+export const deleteToken = () => {
+    localStorage.removeItem('token');
+};
+
+export const saveToken = (response) => {
+    const token = response.token;
+    localStorage.setItem('token', token);
+};

@@ -1,9 +1,5 @@
+import { saveToken } from '../utils/utils';
 import geselaApi from './geselaApi';
-
-const saveToken = (response) => {
-    const token = response.token;
-    localStorage.setItem('token', token);
-};
 
 const authApi = geselaApi.injectEndpoints({
     endpoints: (builder) => ({
