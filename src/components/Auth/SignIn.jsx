@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../api/authApi';
 import Button from '../../components/Button/Button';
-import useAuth from '../../hooks/useAuth';
 import { authFail, authSuccess, loginStart } from '../../store/authSlice';
 import FormPage from '../FormPage/FormPage';
 import { Input } from '../InputControls/InputControls';
 import LoadingPage from '../LoadingPage/LoadingPage';
 
 const SignIn = () => {
-    const { currentUser, loading } = useAuth();
+    const { token, isLoading } = useSelector((state) => state.auth);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (currentUser) {
+        if (token) {
             navigate('/');
         }
-    }, [currentUser, navigate]);
+    }, [token, navigate]);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -30,15 +29,15 @@ const SignIn = () => {
         try {
             dispatch(loginStart());
             const result = await login({ email, password }).unwrap();
-            const { token, user } = result;
-            dispatch(authSuccess({ token, user }));
+            const { token } = result;
+            dispatch(authSuccess({ token }));
             navigate('/');
         } catch (error) {
             dispatch(authFail(error));
         }
     };
 
-    if (loading) return <LoadingPage />;
+    if (isLoading) return <LoadingPage />;
 
     return (
         <FormPage>
