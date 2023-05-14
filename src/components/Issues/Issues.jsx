@@ -37,12 +37,12 @@ const Issues = (props) => {
                                         : 'display-none'
                                 }
                             >
-                                {group}
+                                {group.replace('_', ' ')}
                             </h2>
                             <div className="issue-list">
                                 {issueGroup.map((issue) => (
                                     <IssueCard
-                                        key={issue.id}
+                                        key={issue.uuid}
                                         issue={issue}
                                         onClick={() => setSelectedIssue(issue)}
                                     />
