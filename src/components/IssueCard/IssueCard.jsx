@@ -1,11 +1,11 @@
 import React from 'react';
-import { truncateText } from '../../utils/utils';
+import { getFormattedDate, truncateText } from '../../utils/utils';
 import './IssueCard.css';
 
 const status_class = {
     DRAFT: 'isu-draft',
     PENDING: 'isu-pending',
-    'IN PROGRESS': 'isu-in-progress',
+    IN_PROGRESS: 'isu-in-progress',
     COMPLETED: 'isu-completed',
     ARCHIVED: 'isu-archived',
     CLOSED: 'isu-closed',
@@ -21,9 +21,9 @@ const IssueCard = (props) => {
     return (
         <div className="issue-card" onClick={props.onClick}>
             <header className="issue-card-header">
-                <span>{issue.user}</span>
+                <span>{issue.raisedBy.name}</span>
                 <span className="dot"></span>
-                <span>{issue.date}</span>
+                <span>{getFormattedDate(issue.createdDate)}</span>
             </header>
             <article className="issue-card-content">
                 <h3>{truncateText(issue.title, 50)}</h3>
