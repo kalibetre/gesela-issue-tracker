@@ -6,6 +6,7 @@ import AllIssues from './components/AllIssues/AllIssues';
 import App from './components/App/App';
 import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
+import Departments from './components/Departments/Departments';
 import Issues from './components/Issues/Issues';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import Notifications from './components/Notifications/Notifications';
@@ -86,6 +87,16 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <Notifications notifications={NOTIFICATIONS} />,
+            },
+        ],
+    },
+    {
+        path: 'departments',
+        element: <App />,
+        children: [
+            {
+                path: '',
+                element: <Departments />,
             },
         ],
     },
