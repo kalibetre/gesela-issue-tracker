@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import withAuth from '../../hooks/withAuth';
+import withAuth from '../../hoc/withAuth';
 import Button from '../Button/Button';
 import { ICONS } from '../Common/Icons';
 import Header from '../Header/Header';
