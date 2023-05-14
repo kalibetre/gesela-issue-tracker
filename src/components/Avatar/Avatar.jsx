@@ -1,31 +1,27 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../store/authSlice';
+import { useGetProfileQuery } from '../../api/userApi';
 import Button from '../Button/Button';
 import './Avatar.css';
 
 const Avatar = () => {
-    const { profile } = useSelector((state) => state.user);
+    const { data: currentUser } = useGetProfileQuery();
     const [open, setOpen] = useState(false);
-
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const getInitials = (name) => {
         const parts = name.split(' ');
         return parts[0].charAt(0) + (parts[1] ? parts[1].charAt(0) : '');
     };
 
-    const handleLogout = (event) => {
-        dispatch(logout());
+    const handleLogout = () => {
         navigate('/signin');
     };
 
     return (
         <div className="av-container">
             <div className="av-initial" onClick={() => setOpen(!open)}>
-                {profile ? getInitials(profile.name) : ''}
+                {currentUser ? getInitials(currentUser.name) : ''}
             </div>
             {open && (
                 <div className="av-menu-overlay" onClick={() => setOpen(false)}>
@@ -33,8 +29,8 @@ const Avatar = () => {
                         className="av-menu"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <h3>{profile ? profile.name : ''}</h3>
-                        <p>{profile ? profile.email : ''}</p>
+                        <h3>{currentUser ? currentUser.name : ''}</h3>
+                        <p>{currentUser ? currentUser.email : ''}</p>
                         <div className="av-menu-actions">
                             <Button
                                 type="button"
