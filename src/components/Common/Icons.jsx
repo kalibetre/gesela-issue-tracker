@@ -1,4 +1,5 @@
 import React from 'react';
+import './Icons.css';
 
 export const IssuesIcon = () => {
     return (
@@ -110,6 +111,10 @@ export const MenuIcon = () => {
     );
 };
 
+export const SpinnerIcon = () => {
+    return <span className="spinner" />;
+};
+
 export const ICONS = {
     issues: <IssuesIcon />,
     notifications: <NotificationsIcon />,
@@ -122,4 +127,5 @@ export const ICONS = {
     help: <HelpIcon />,
     about: <AboutIcon />,
     menu: <MenuIcon />,
+    spinner: <SpinnerIcon />,
 };
