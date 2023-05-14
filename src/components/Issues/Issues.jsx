@@ -4,6 +4,7 @@ import IssueCard from '../IssueCard/IssueCard';
 import IssueDetail from '../IssueDetail/IssueDetail';
 import Workspace from '../Workspace/Workspace';
 import './Issues.css';
+import '../Common/Cards.css';
 
 const Issues = (props) => {
     const [selectedIssue, setSelectedIssue] = useState(null);
@@ -25,7 +26,7 @@ const Issues = (props) => {
                     handleClose={() => setSelectedIssue(null)}
                 />
             )}
-            <div className="issue-list-container">
+            <div className="card-list-container">
                 {Object.keys(groupedIssues).map((group) => {
                     const issueGroup = groupedIssues[group];
                     return (
@@ -39,7 +40,7 @@ const Issues = (props) => {
                             >
                                 {group.replace('_', ' ')}
                             </h2>
-                            <div className="issue-list">
+                            <div className="card-list">
                                 {issueGroup.map((issue) => (
                                     <IssueCard
                                         key={issue.uuid}
