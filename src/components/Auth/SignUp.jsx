@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 import FormPage from '../FormPage/FormPage';
 import { Input } from '../InputControls/InputControls';
 
 const SignUp = () => {
+    const navigate = useNavigate();
+
+    const handleSignIn = (event) => {
+        event.preventDefault();
+        navigate('/signin');
+    };
+
     return (
         <FormPage>
             <h2 className="mdl-content-header">
@@ -29,8 +36,11 @@ const SignUp = () => {
                 label="Repeat Password"
             />
             <div className="mdl-btn-container">
-                <Button className="btn btn-default btn-link">
-                    <Link to="/signin">Sign In</Link>
+                <Button
+                    className="btn btn-default btn-link"
+                    onClick={handleSignIn}
+                >
+                    Sign In
                 </Button>
                 <Button className="btn btn-primary">Sign Up</Button>
             </div>
