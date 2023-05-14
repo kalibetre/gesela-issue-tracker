@@ -17,3 +17,10 @@ export const groupByAttribute = (data, attributeName) => {
 export const filterByAttribute = (data, attribute, value) => {
     return data.filter((issue) => issue[attribute] === value);
 };
+
+const DATE_OPTIONS = { year: 'numeric', month: 'short', day: 'numeric' };
+
+export const getFormattedDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', DATE_OPTIONS);
+};
