@@ -1,24 +1,33 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import geselaApi from './geselaApi';
 
-const BASE_URL = process.env.REACT_APP_API_URL;
+const saveToken = (response) => {
+    const token = response.token;
+    localStorage.setItem('token', token);
+};
 
-const authApi = createApi({
-    reducerPath: 'authApi',
-    baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/auth` }),
+const authApi = geselaApi.injectEndpoints({
     endpoints: (builder) => ({
         register: builder.mutation({
             query: (user) => ({
-                url: '/register',
+                url: '/auth/register',
                 method: 'POST',
                 body: user,
             }),
+            transformResponse: (response) => {
+                saveToken(response);
+                return response;
+            },
         }),
         login: builder.mutation({
             query: ({ email, password }) => ({
-                url: '/login',
+                url: '/auth/login',
                 method: 'POST',
                 body: { email, password },
             }),
+            transformResponse: (response) => {
+                saveToken(response);
+                return response;
+            },
         }),
     }),
 });
