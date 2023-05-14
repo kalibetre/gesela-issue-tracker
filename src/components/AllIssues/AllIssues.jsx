@@ -3,13 +3,13 @@ import { useGetIssuesQuery } from '../../api/issueApi';
 import Issues from '../Issues/Issues';
 
 const AllIssues = (props) => {
-    const { data: issues, isLoading, isError } = useGetIssuesQuery();
+    const { data: issues, isLoading, error } = useGetIssuesQuery();
 
     if (isLoading) {
         return <div>Loading...</div>;
     }
 
-    if (isError) {
+    if (error) {
         return <div>Error...</div>;
     }
 
