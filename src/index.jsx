@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import AllIssues from './components/AllIssues/AllIssues';
 import App from './components/App/App';
 import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <Issues title="All Issues" issues={ISSUES_DATA} />,
+                element: <AllIssues groupBy="status" />,
             },
         ],
     },
@@ -35,13 +36,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: (
-                    <Issues
-                        title="All Issues"
-                        issues={ISSUES_DATA}
-                        groupBy="status"
-                    />
-                ),
+                element: <AllIssues groupBy="status" />,
             },
             {
                 path: 'draft',
