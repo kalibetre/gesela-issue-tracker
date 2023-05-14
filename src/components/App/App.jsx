@@ -1,22 +1,18 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
+import withAuth from '../../hooks/withAuth';
 import Button from '../Button/Button';
 import { ICONS } from '../Common/Icons';
 import Header from '../Header/Header';
 import LinkButton from '../LinkButton/LinkButton';
 import LinkGroup from '../LinkGroup/LinkGroup';
-import LoadingPage from '../LoadingPage/LoadingPage';
 import NewIssueModal from '../NewIssueModal/NewIssueModal';
 import SideBar from '../SideBar/SideBar';
 import './App.css';
 
 function App() {
-    const { loading } = useAuth;
     const [toggleSideBar, setToggleSideBar] = useState(false);
     const [newIssueModalOpen, setNewIssueModalOpen] = useState(false);
-
-    if (loading) return <LoadingPage />;
 
     const handleToggleSideBar = () => {
         setToggleSideBar(!toggleSideBar);
@@ -122,4 +118,4 @@ function App() {
     );
 }
 
-export default App;
+export default withAuth(App);
