@@ -25,6 +25,10 @@
 	background: #1A6A76;
 }
 
+.btn-primary:disabled {
+	background: #8C8C8C;
+}
+
 .btn-default {
 	background: #FFFFFF;
 	border: 0.2px solid #8C8C8C;
@@ -36,6 +40,10 @@
 
 .btn-default:active {
 	background: #EEEEEE;
+}
+
+.btn-default:disabled {
+	background: #F5F5F5;
 }
 
 .btn-danger {
