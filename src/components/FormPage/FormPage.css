@@ -12,6 +12,7 @@
 	padding: 25px;
 	border-radius: 8px;
 	width: 450px;
+	position: relative;
 }
 
 .mc-modal-header {
@@ -45,6 +46,31 @@
 	width: 100%;
 	margin-top: 40px;
 	height: 35px;
+}
+
+.spinner-container {
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	top: 15px;
+	right: 15px;
+}
+
+.alert {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	border-radius: 8px;
+	margin-bottom: 10px;
+	font-size: 13px;
+}
+
+.alert-danger {
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+	color: #721c24;
 }
 
 @media screen and (max-width: 600px) {
