@@ -1,46 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../api/authApi';
+import geselaApi from '../../api/geselaApi';
 import Button from '../../components/Button/Button';
-import { authFail, authSuccess, loginStart } from '../../store/authSlice';
+import { deleteToken } from '../../utils/utils';
+import { SpinnerIcon } from '../Common/Icons';
 import FormPage from '../FormPage/FormPage';
 import { Input } from '../InputControls/InputControls';
 import LoadingPage from '../LoadingPage/LoadingPage';
 
 const SignIn = () => {
-    const { token, isLoading } = useSelector((state) => state.auth);
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (token) {
-            navigate('/');
-        }
-    }, [token, navigate]);
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [login] = useLoginMutation();
+    const [login, { isLoading, error }] = useLoginMutation();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const resetAppState = useCallback(() => {
+        deleteToken();
+        dispatch(geselaApi.util.resetApiState());
+    }, [dispatch]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            dispatch(loginStart());
-            const result = await login({ email, password }).unwrap();
-            const { token } = result;
-            dispatch(authSuccess({ token }));
+            await login({ email, password }).unwrap();
             navigate('/');
         } catch (error) {
-            dispatch(authFail(error));
+            resetAppState();
         }
     };
+
+    const handleSignUp = (event) => {
+        event.preventDefault();
+        navigate('/signup');
+    };
+
+    useEffect(() => {
+        resetAppState();
+    }, [resetAppState]);
 
     if (isLoading) return <LoadingPage />;
 
     return (
         <FormPage>
+            <div className="spinner-container">
+                {isLoading && <SpinnerIcon />}
+            </div>
+
             <h2 className="mdl-content-header">
                 Login into BeranaBug Enterprise Issue Tracking System
             </h2>
@@ -51,6 +59,7 @@ const SignIn = () => {
                     id="email"
                     label="Email"
                     value={email}
+                    disabled={isLoading}
                     onChange={(event) => setEmail(event.target.value)}
                 />
                 <Input
@@ -60,13 +69,26 @@ const SignIn = () => {
                     id="password"
                     label="Password"
                     value={password}
+                    disabled={isLoading}
                     onChange={(event) => setPassword(event.target.value)}
                 />
+                {error && (
+                    <div className="alert alert-danger" role="alert">
+                        SigIn failed. User name or password is incorrect.
+                    </div>
+                )}
                 <div className="mdl-btn-container">
-                    <Button className="btn btn-default btn-link" type="submit">
-                        <Link to="/signup">Sign Up</Link>
+                    <Button
+                        className="btn btn-default btn-link"
+                        type="submit"
+                        disabled={isLoading}
+                        onClick={handleSignUp}
+                    >
+                        Sign Up
                     </Button>
-                    <Button className="btn btn-primary">Sign In</Button>
+                    <Button className="btn btn-primary" disabled={isLoading}>
+                        Sign In
+                    </Button>
                 </div>
             </form>
         </FormPage>
