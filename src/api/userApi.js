@@ -9,8 +9,16 @@ const userApi = geselaApi.injectEndpoints({
                 method: 'GET',
             }),
             providesTags: (result) => {
-                if (!result) return [{ type: 'Users', id: 'PROFILE' }];
-                return [{ type: 'Users', id: result.id }];
+                return [{ type: 'Users', id: 'PROFILE' }];
+            },
+        }),
+        getRoles: builder.query({
+            query: () => ({
+                url: '/users/roles',
+                method: 'GET',
+            }),
+            providesTags: (result) => {
+                return [{ type: 'Users', id: 'ROLE' }];
             },
         }),
         updateProfile: builder.mutation({
@@ -42,6 +50,7 @@ const userApi = geselaApi.injectEndpoints({
 
 export const {
     useGetProfileQuery,
+    useGetRolesQuery,
     useUpdateProfileMutation,
     useUpdateUserMutation,
     useChangeRoleMutation,
