@@ -1,4 +1,5 @@
 import React from 'react';
+import { useGetDepartmentsQuery } from '../../api/departmentApi';
 import {
     Input,
     Option,
@@ -8,9 +9,9 @@ import {
 import Modal from '../Modal/Modal';
 import './NewIssueModal.css';
 
-const departments = ['Human Resources', 'Accounting', 'Customer Service'];
-
 const NewIssueModal = (props) => {
+    const { data: departments } = useGetDepartmentsQuery();
+
     return (
         <Modal
             title="Edit Issue"
@@ -31,13 +32,15 @@ const NewIssueModal = (props) => {
             <div className="ap-new-issue-form">
                 <Input type="text" id="title" label="Title" />
                 <TextArea id="description" label="Description" />
-                <Select id="department" label="Department">
-                    {departments.map((department, index) => (
-                        <Option key={index} value={department}>
-                            {department}
-                        </Option>
-                    ))}
-                </Select>
+                {departments && (
+                    <Select id="department" label="Department">
+                        {departments.map((dept) => (
+                            <Option key={dept.uuid} value={dept.uuid}>
+                                {dept.name}
+                            </Option>
+                        ))}
+                    </Select>
+                )}
             </div>
         </Modal>
     );
