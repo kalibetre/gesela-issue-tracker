@@ -39,7 +39,7 @@ const departmentApi = geselaApi.injectEndpoints({
         }),
         deleteDepartment: builder.mutation({
             query: (uuid) => ({
-                url: `/${uuid}`,
+                url: `/departments/${uuid}`,
                 method: 'DELETE',
             }),
             invalidatesTags: (result, error, { uuid }) => [
