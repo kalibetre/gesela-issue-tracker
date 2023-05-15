@@ -13,7 +13,7 @@ const EmployeeDetail = (props) => {
     const [employee, setEmployee] = useState(props.employee);
     const [password, setPassword] = useState('');
     const [rptPassword, setRptPassword] = useState('');
-    const [validationErrors, setValidationErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
 
     const [updateEmployee, { isLoading: updateLoading, isError: updateError }] =
         useUpdateEmployeeMutation();
@@ -40,7 +40,7 @@ const EmployeeDetail = (props) => {
             validationErrors = [...validationErrors, 'Passwords do not match'];
         }
         if (validationErrors.length > 0) {
-            setValidationErrors(validationErrors);
+            setErrors(validationErrors);
             return false;
         }
         return true;
@@ -74,9 +74,8 @@ const EmployeeDetail = (props) => {
             }
             props.handleClose();
         } catch (error) {
-            console.log(error);
             if (error.data?.message?.toLowerCase().includes('validation')) {
-                setValidationErrors(error.data.errors);
+                setErrors(error.data.errors);
             }
         }
     };
@@ -87,7 +86,7 @@ const EmployeeDetail = (props) => {
             await deleteEmployee(employee.uuid).unwrap();
             props.handleClose();
         } catch (error) {
-            console.log(error);
+            return;
         }
     };
 
@@ -265,8 +264,8 @@ const EmployeeDetail = (props) => {
                         Unable to create the employee. Please try again.
                     </div>
                 )}
-                {validationErrors.length > 0 &&
-                    validationErrors.map((error, index) => (
+                {errors.length > 0 &&
+                    errors.map((error, index) => (
                         <div
                             key={index}
                             className="alert alert-danger"

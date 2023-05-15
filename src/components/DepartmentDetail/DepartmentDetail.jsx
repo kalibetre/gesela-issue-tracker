@@ -9,6 +9,7 @@ import Modal from '../Modal/Modal';
 
 const DepartmentDetail = (props) => {
     const { department } = props;
+    const [errors, setErrors] = useState([]);
 
     const [name, setName] = useState(department.name);
     const [description, setDescription] = useState(department.description);
@@ -27,8 +28,21 @@ const DepartmentDetail = (props) => {
         { isLoading: createLoading, isError: createError },
     ] = useCreateDepartmentMutation();
 
+    const checkValidation = () => {
+        let validationErrors = [];
+        if (!name) {
+            validationErrors = [...validationErrors, 'Name is required'];
+        }
+        if (validationErrors.length > 0) {
+            setErrors(validationErrors);
+            return false;
+        }
+        return true;
+    };
+
     const handleSave = async (event) => {
         event.preventDefault();
+        if (!checkValidation()) return;
         try {
             if (department.uuid === 'new') {
                 await createDepartment({
@@ -44,7 +58,9 @@ const DepartmentDetail = (props) => {
             }
             props.handleClose();
         } catch (error) {
-            console.log(error);
+            if (error.data?.message?.toLowerCase().includes('validation')) {
+                setErrors(error.data.errors);
+            }
         }
     };
 
@@ -54,7 +70,7 @@ const DepartmentDetail = (props) => {
             await deleteDepartment(department.uuid).unwrap();
             props.handleClose();
         } catch (error) {
-            console.log(error);
+            return;
         }
     };
 
@@ -131,6 +147,16 @@ const DepartmentDetail = (props) => {
                         Unable to create the department. Please try again.
                     </div>
                 )}
+                {errors.length > 0 &&
+                    errors.map((error, index) => (
+                        <div
+                            key={index}
+                            className="alert alert-danger"
+                            role="alert"
+                        >
+                            {error}
+                        </div>
+                    ))}
             </Modal>
         </form>
     );
