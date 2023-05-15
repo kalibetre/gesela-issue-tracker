@@ -77,7 +77,10 @@ const DepartmentDetail = (props) => {
                         <button
                             className="btn btn-danger"
                             disabled={
-                                updateLoading || deleteLoading || createLoading
+                                updateLoading ||
+                                deleteLoading ||
+                                createLoading ||
+                                department.uuid === 'new'
                             }
                             onClick={handleDelete}
                         >

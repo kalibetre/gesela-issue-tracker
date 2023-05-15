@@ -110,7 +110,10 @@ const EmployeeDetail = (props) => {
                         <button
                             className="btn btn-danger"
                             disabled={
-                                updateLoading || deleteLoading || createLoading
+                                updateLoading ||
+                                deleteLoading ||
+                                createLoading ||
+                                employee.uuid === 'new'
                             }
                             onClick={handleDelete}
                         >

@@ -60,6 +60,10 @@
 	background: #C0392B;
 }
 
+.btn-danger:disabled {
+	background: #8C8C8C;
+}
+
 .btn-link a {
 	text-decoration: none;
 	width: 100%;
