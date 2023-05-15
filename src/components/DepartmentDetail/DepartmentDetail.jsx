@@ -24,7 +24,7 @@ const DepartmentDetail = (props) => {
 
     const [
         createDepartment,
-        { isLoading: createLoading, isError: creteError },
+        { isLoading: createLoading, isError: createError },
     ] = useCreateDepartmentMutation();
 
     const handleSave = async (event) => {
@@ -67,18 +67,27 @@ const DepartmentDetail = (props) => {
                     <>
                         <button
                             className="btn btn-default"
+                            disabled={
+                                updateLoading || deleteLoading || createLoading
+                            }
                             onClick={props.handleClose}
                         >
                             Close
                         </button>
                         <button
                             className="btn btn-danger"
+                            disabled={
+                                updateLoading || deleteLoading || createLoading
+                            }
                             onClick={handleDelete}
                         >
                             Delete
                         </button>
                         <button
                             className="btn btn-primary"
+                            disabled={
+                                updateLoading || deleteLoading || createLoading
+                            }
                             onClick={handleSave}
                         >
                             Save
@@ -114,7 +123,7 @@ const DepartmentDetail = (props) => {
                         Unable to delete the department. Please try again.
                     </div>
                 )}
-                {creteError && (
+                {createError && (
                     <div className="alert alert-danger" role="alert">
                         Unable to create the department. Please try again.
                     </div>
