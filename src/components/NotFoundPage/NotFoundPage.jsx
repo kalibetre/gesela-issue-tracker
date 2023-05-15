@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
+import '../Common/ErrorStyles.css';
 import FormPage from '../FormPage/FormPage';
-import './NotFoundPage.css';
 
 const NotFoundPage = () => {
     return (
