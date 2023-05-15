@@ -1,0 +1,64 @@
+.emp-card {
+	width: 320px;
+	height: 115px;
+}
+
+.emp-card-content {
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+	width: 100%;
+}
+
+.emp-initial {
+	color: #12819a;
+	width: 45px;
+	height: 45px;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+	cursor: default;
+	user-select: none;
+	border: 2px solid #12819a;
+}
+
+.emp-info {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.emp-title {
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+.emp-subtitle {
+	font-size: 13px;
+}
+
+.emp-subtitle-2 {
+	font-size: 14px;
+	margin-top: 10px;
+	color: #4f4f4f;
+	font-weight: bold;
+}
+
+.emp-role-pill {
+	text-transform: uppercase;
+	border: 0.1rem solid;
+	padding: 3px 8px;
+	border-radius: 15px;
+	font-size: 12px;
+	margin-top: 10px;
+	width: 130px;
+	text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+	.emp-card {
+		width: 100%;
+	}
+}
