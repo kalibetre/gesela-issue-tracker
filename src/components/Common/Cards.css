@@ -100,3 +100,30 @@
 	border-radius: 15px;
 	font-size: 13px;
 }
+
+.action-card {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+	width: 100%;
+	height: 100%;
+}
+
+.action-card-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
+
+.action-card-text {
+	font-size: 18px;
+	font-weight: 400;
+	color: #797979;
+}
