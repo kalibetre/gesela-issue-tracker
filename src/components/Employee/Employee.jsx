@@ -20,23 +20,16 @@ const Employee = (props) => {
                     <>
                         <div className="emp-card-content">
                             <div className="emp-initial">
-                                {getInitials(employee.userAccount.name)}
+                                {getInitials(employee.name)}
                             </div>
                             <div className="emp-info">
-                                <h3 className="emp-title">
-                                    {employee.userAccount.name}
-                                </h3>
-                                <p className="emp-subtitle">
-                                    {employee.userAccount.email}
-                                </p>
+                                <h3 className="emp-title">{employee.name}</h3>
+                                <p className="emp-subtitle">{employee.email}</p>
                                 <p className="emp-subtitle-2">
-                                    {employee.department}
+                                    {employee.department.name}
                                 </p>
                                 <span className="emp-role-pill">
-                                    {employee.userAccount.role.replace(
-                                        '_',
-                                        ' '
-                                    )}
+                                    {employee.role.replace('_', ' ')}
                                 </span>
                             </div>
                         </div>
