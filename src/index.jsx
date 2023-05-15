@@ -7,6 +7,7 @@ import App from './components/App/App';
 import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
 import Departments from './components/Departments/Departments';
+import Employees from './components/Employees/Employees';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Issues from './components/Issues/Issues';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
@@ -102,6 +103,17 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <Departments />,
+            },
+        ],
+    },
+    {
+        path: 'employees',
+        element: <App />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: '',
+                element: <Employees />,
             },
         ],
     },
