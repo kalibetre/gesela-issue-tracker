@@ -7,6 +7,7 @@ import App from './components/App/App';
 import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
 import Departments from './components/Departments/Departments';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 import Issues from './components/Issues/Issues';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import Notifications from './components/Notifications/Notifications';
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
     {
         path: '',
         element: <App />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '',
@@ -34,6 +36,7 @@ const router = createBrowserRouter([
     {
         path: 'issues',
         element: <App />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '',
@@ -83,6 +86,7 @@ const router = createBrowserRouter([
     {
         path: 'notifications',
         element: <App />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '',
@@ -93,6 +97,7 @@ const router = createBrowserRouter([
     {
         path: 'departments',
         element: <App />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '',
