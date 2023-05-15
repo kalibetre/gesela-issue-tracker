@@ -45,7 +45,7 @@ const SignIn = () => {
 
     return (
         <FormPage>
-            <div className="spinner-container">
+            <div className="mdl-spinner-container">
                 {isLoading && <SpinnerIcon />}
             </div>
 
