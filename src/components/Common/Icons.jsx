@@ -115,6 +115,26 @@ export const SpinnerIcon = () => {
     return <span className="spinner" />;
 };
 
+export const PlusIcon = () => {
+    return (
+        <img
+            style={{ width: '100%', height: '100%' }}
+            src="/images/plus.svg"
+            alt="Plus Icon"
+        />
+    );
+};
+
+export const ErrorIcon = () => {
+    return (
+        <img
+            style={{ width: '100%', height: '100%' }}
+            src="/images/error.svg"
+            alt="Error Icon"
+        />
+    );
+};
+
 export const ICONS = {
     issues: <IssuesIcon />,
     notifications: <NotificationsIcon />,
@@ -128,4 +148,6 @@ export const ICONS = {
     about: <AboutIcon />,
     menu: <MenuIcon />,
     spinner: <SpinnerIcon />,
+    plus: <PlusIcon />,
+    error: <ErrorIcon />,
 };
