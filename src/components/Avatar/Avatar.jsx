@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetProfileQuery } from '../../api/userApi';
+import { getInitials } from '../../utils/utils';
 import Button from '../Button/Button';
 import './Avatar.css';
 
@@ -8,11 +9,6 @@ const Avatar = () => {
     const { data: currentUser } = useGetProfileQuery();
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
-
-    const getInitials = (name) => {
-        const parts = name.split(' ');
-        return parts[0].charAt(0) + (parts[1] ? parts[1].charAt(0) : '');
-    };
 
     const handleLogout = () => {
         navigate('/signin');

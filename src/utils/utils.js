@@ -2,6 +2,11 @@ export const truncateText = (str, n) => {
     return str?.length > n ? str.substr(0, n - 1) + '...' : str;
 };
 
+export const getInitials = (name) => {
+    const parts = name.split(' ');
+    return parts[0].charAt(0) + (parts[1] ? parts[1].charAt(0) : '');
+};
+
 export const groupByAttribute = (data, attributeName) => {
     const groups = {};
     for (const issue of data) {
