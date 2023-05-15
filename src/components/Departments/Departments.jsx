@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGetDepartmentsQuery } from '../../api/departmentApi';
 import '../Common/Cards.css';
 import Department from '../Department/Department';
+import DepartmentDetail from '../DepartmentDetail/DepartmentDetail';
 import StatusMessage from '../StatusMessage/StatusMessage';
 import Workspace from '../Workspace/Workspace';
-import './Departments.css';
 
 const Departments = () => {
     const { data: departments, isLoading, isError } = useGetDepartmentsQuery();
-
-    const handleOnClick = (department) => {
-        console.log(department);
-    };
+    const [selectedDepartment, setSelectedDepartment] = useState(null);
 
     const handleNewDepartment = () => {
-        console.log('New Department');
+        setSelectedDepartment({
+            uuid: 'new',
+            name: '',
+            description: '',
+        });
     };
 
     return (
         <Workspace title="Departments">
+            {selectedDepartment && (
+                <DepartmentDetail
+                    department={selectedDepartment}
+                    handleClose={() => setSelectedDepartment(null)}
+                />
+            )}
             {isLoading ? (
                 <StatusMessage loading title="Loading departments .." />
             ) : isError ? (
@@ -31,7 +38,9 @@ const Departments = () => {
                                 <Department
                                     key={department.uuid}
                                     department={department}
-                                    onClick={() => handleOnClick(department)}
+                                    onClick={() =>
+                                        setSelectedDepartment(department)
+                                    }
                                 />
                             ))}
                         <Department actionCard onClick={handleNewDepartment} />
