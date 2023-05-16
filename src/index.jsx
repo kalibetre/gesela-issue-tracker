@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import AllIssues from './components/AllIssues/AllIssues';
 import App from './components/App/App';
 import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
@@ -16,8 +15,7 @@ import Notifications from './components/Notifications/Notifications';
 import './css-reset.css';
 import './index.css';
 import store from './store/store';
-import { ISSUES_DATA, NOTIFICATIONS } from './utils/data';
-import { filterByAttribute } from './utils/utils';
+import { NOTIFICATIONS } from './utils/data';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -29,7 +27,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <AllIssues groupBy="status" />,
+                element: <Issues title="All Issues" groupBy="status" />,
             },
         ],
     },
@@ -42,18 +40,14 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <AllIssues groupBy="status" />,
+                element: <Issues title="All Issues" groupBy="status" />,
             },
             {
                 path: 'draft',
                 element: (
                     <Issues
                         title="Draft Issues"
-                        issues={filterByAttribute(
-                            ISSUES_DATA,
-                            'status',
-                            'DRAFT'
-                        )}
+                        filter={(issue) => issue.status === 'DRAFT'}
                     />
                 ),
             },
@@ -62,11 +56,7 @@ const router = createBrowserRouter([
                 element: (
                     <Issues
                         title="Archived Issues"
-                        issues={filterByAttribute(
-                            ISSUES_DATA,
-                            'status',
-                            'ARCHIVED'
-                        )}
+                        filter={(issue) => issue.status === 'ARCHIVED'}
                     />
                 ),
             },
@@ -75,11 +65,7 @@ const router = createBrowserRouter([
                 element: (
                     <Issues
                         title="Closed Issues"
-                        issues={filterByAttribute(
-                            ISSUES_DATA,
-                            'status',
-                            'CLOSED'
-                        )}
+                        filter={(issue) => issue.status === 'CLOSED'}
                     />
                 ),
             },
