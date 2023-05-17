@@ -13,7 +13,7 @@ const EmployeeDetail = (props) => {
     const [employee, setEmployee] = useState(props.employee);
     const [password, setPassword] = useState('');
     const [rptPassword, setRptPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState({});
 
     const [updateEmployee, { isLoading: updateLoading, isError: updateError }] =
         useUpdateEmployeeMutation();
@@ -26,30 +26,32 @@ const EmployeeDetail = (props) => {
     const { data: roles } = useGetRolesQuery();
 
     const checkValidation = () => {
-        let validationErrors = [];
+        const validationErrors = {};
         if (!employee.name) {
-            validationErrors = [...validationErrors, 'Name is required'];
+            validationErrors.name = 'Name is required';
         }
         if (!employee.email) {
-            validationErrors = [...validationErrors, 'Email is required'];
+            validationErrors.email = 'Email is required';
         }
         if (!employee.phone) {
-            validationErrors = [...validationErrors, 'Phone is required'];
+            validationErrors.phone = 'Phone is required';
+        }
+        if (!password) {
+            validationErrors.password = 'Password is required';
         }
         if (employee.uuid === 'new' && password !== rptPassword) {
-            validationErrors = [...validationErrors, 'Passwords do not match'];
+            validationErrors.rptpassword = 'Passwords do not match';
         }
-        if (validationErrors.length > 0) {
-            setErrors(validationErrors);
-            return false;
-        }
-        return true;
+        setErrors(validationErrors);
     };
 
     const handleSave = async (event) => {
         event.preventDefault();
-        if (!checkValidation()) return;
         try {
+            checkValidation();
+            if (Object.keys(errors).length > 0) {
+                return;
+            }
             if (employee.uuid === 'new') {
                 if (!employee.department.uuid) {
                     employee.department.uuid = departments[0].uuid;
@@ -144,6 +146,11 @@ const EmployeeDetail = (props) => {
                         }))
                     }
                 />
+                {errors.name && (
+                    <div className="alert alert-danger" role="alert">
+                        {errors.name}
+                    </div>
+                )}
                 <Input
                     type="email"
                     name="emp-name"
@@ -158,6 +165,11 @@ const EmployeeDetail = (props) => {
                         }))
                     }
                 />
+                {errors.email && (
+                    <div className="alert alert-danger" role="alert">
+                        {errors.email}
+                    </div>
+                )}
                 <Input
                     type="text"
                     name="emp-phone"
@@ -172,6 +184,11 @@ const EmployeeDetail = (props) => {
                         }))
                     }
                 />
+                {errors.phone && (
+                    <div className="alert alert-danger" role="alert">
+                        {errors.phone}
+                    </div>
+                )}
                 {employee.uuid === 'new' && (
                     <>
                         <Input
@@ -187,6 +204,11 @@ const EmployeeDetail = (props) => {
                                 setPassword(event.target.value)
                             }
                         />
+                        {errors.password && (
+                            <div className="alert alert-danger" role="alert">
+                                {errors.password}
+                            </div>
+                        )}
                         <Input
                             type="password"
                             name="emp-rpt-pwd"
@@ -200,6 +222,11 @@ const EmployeeDetail = (props) => {
                                 setRptPassword(event.target.value)
                             }
                         />
+                        {errors.rptPassword && (
+                            <div className="alert alert-danger" role="alert">
+                                {errors.rptPassword}
+                            </div>
+                        )}
                     </>
                 )}
                 {departments && (
@@ -264,16 +291,6 @@ const EmployeeDetail = (props) => {
                         Unable to create the employee. Please try again.
                     </div>
                 )}
-                {errors.length > 0 &&
-                    errors.map((error, index) => (
-                        <div
-                            key={index}
-                            className="alert alert-danger"
-                            role="alert"
-                        >
-                            {error}
-                        </div>
-                    ))}
             </Modal>
         </form>
     );
