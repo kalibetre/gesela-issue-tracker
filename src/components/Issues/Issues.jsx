@@ -36,9 +36,9 @@ const Issues = (props) => {
                 />
             )}
             {isLoading ? (
-                <StatusMessage loading title="Loading employees .." />
+                <StatusMessage loading title="Loading issues ..." />
             ) : isError ? (
-                <StatusMessage error title="Error employees .." />
+                <StatusMessage error title="Error issue ..." />
             ) : (
                 <div className="card-list-container">
                     {Object.keys(groupedIssues).map((group) => {
