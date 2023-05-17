@@ -1,17 +1,7 @@
 import React from 'react';
+import { getStatusCSSClass } from '../../utils/utils';
 import Modal from '../Modal/Modal';
 import './IssueDetail.css';
-
-const status_class = {
-    DRAFT: 'isu-draft',
-    PENDING: 'isu-pending',
-    'IN PROGRESS': 'isu-in-progress',
-    COMPLETED: 'isu-completed',
-};
-
-const get_status_class = (status) => {
-    return status_class[status];
-};
 
 const IssueDetail = (props) => {
     const { issue } = props;
@@ -37,7 +27,7 @@ const IssueDetail = (props) => {
             <div className="isu-detail">
                 <div
                     className={
-                        'isu-detail-prog ' + get_status_class(issue.status)
+                        'isu-detail-prog ' + getStatusCSSClass(issue.status)
                     }
                 >
                     {issue.status}

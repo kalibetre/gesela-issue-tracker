@@ -1,20 +1,11 @@
 import React from 'react';
-import { getFormattedDate, truncateText } from '../../utils/utils';
+import {
+    getFormattedDate,
+    getStatusCSSClass,
+    truncateText,
+} from '../../utils/utils';
 import '../Common/Cards.css';
 import './IssueCard.css';
-
-const status_class = {
-    DRAFT: 'isu-draft',
-    PENDING: 'isu-pending',
-    IN_PROGRESS: 'isu-in-progress',
-    COMPLETED: 'isu-completed',
-    ARCHIVED: 'isu-archived',
-    CLOSED: 'isu-closed',
-};
-
-const get_status_class = (status) => {
-    return status_class[status];
-};
 
 const IssueCard = (props) => {
     const { issue } = props;
@@ -37,7 +28,9 @@ const IssueCard = (props) => {
                 </article>
                 <footer className="card-footer">
                     <div
-                        className={'card-tag ' + get_status_class(issue.status)}
+                        className={
+                            'card-tag ' + getStatusCSSClass(issue.status)
+                        }
                     >
                         {issue.status}
                     </div>

@@ -38,3 +38,16 @@ export const saveToken = (response) => {
     const token = response.token;
     localStorage.setItem('token', token);
 };
+
+const status_class = {
+    DRAFT: 'isu-draft',
+    PENDING: 'isu-pending',
+    IN_PROGRESS: 'isu-in-progress',
+    COMPLETED: 'isu-completed',
+    ARCHIVED: 'isu-archived',
+    CLOSED: 'isu-closed',
+};
+
+export const getStatusCSSClass = (status) => {
+    return status_class[status];
+};
