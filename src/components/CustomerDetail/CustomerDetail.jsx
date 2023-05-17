@@ -36,7 +36,6 @@ const CustomerDetail = (props) => {
     };
 
     const handleSave = async (event) => {
-        console.log(customer);
         event.preventDefault();
         if (!checkValidation()) return;
         try {
