@@ -7,3 +7,12 @@ export const isOwner = (issue, user) =>
 
 export const isHandler = (issue, user) =>
     issue && user && issue.handler && issue.handler.uuid === user.uuid;
+
+export const ISSUE_STATUS = {
+    DRAFT: 'DRAFT',
+    PENDING: 'PENDING',
+    IN_PROGRESS: 'IN PROGRESS',
+    COMPLETED: 'COMPLETED',
+    ARCHIVED: 'ARCHIVED',
+    CLOSED: 'CLOSED',
+};

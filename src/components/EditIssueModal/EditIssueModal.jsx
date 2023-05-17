@@ -4,8 +4,13 @@ import {
     useUpdateIssueMutation,
 } from '../../api/issueApi';
 import { useGetProfileQuery } from '../../api/userApi';
-import { isDraft, isOwner } from '../../utils/issue';
-import { Input, TextArea } from '../InputControls/InputControls';
+import { ISSUE_STATUS, isDraft, isHandler, isOwner } from '../../utils/issue';
+import {
+    Input,
+    Option,
+    Select,
+    TextArea,
+} from '../InputControls/InputControls';
 import Modal from '../Modal/Modal';
 import './EditIssueModal.css';
 
@@ -17,6 +22,7 @@ const EditIssueModal = (props) => {
             uuid: 'new',
             title: '',
             description: '',
+            status: 'DRAFT',
         }
     );
 
@@ -58,11 +64,17 @@ const EditIssueModal = (props) => {
                     }).unwrap();
                 }
             } else {
-                await updateIssue({
-                    uuid: issue.uuid,
-                    title: issue.title,
-                    description: issue.description,
-                }).unwrap();
+                if (isHandler(currentUser)) {
+                    await updateIssue({
+                        status: issue.status,
+                    }).unwrap();
+                } else {
+                    await updateIssue({
+                        uuid: issue.uuid,
+                        title: issue.title,
+                        description: issue.description,
+                    }).unwrap();
+                }
             }
 
             props.handleClose();
@@ -135,6 +147,26 @@ const EditIssueModal = (props) => {
                     }
                     disabled={!isOwner(issue, currentUser) || !isDraft(issue)}
                 />
+                {isHandler(issue, currentUser) && (
+                    <Select
+                        id="status"
+                        label="Issue Status"
+                        value={issue.status}
+                        onChange={(e) =>
+                            setIssue((prev) => ({
+                                ...prev,
+                                status: e.target.value,
+                            }))
+                        }
+                        disabled={isUpdating}
+                    >
+                        {Object.keys(ISSUE_STATUS).map((status) => (
+                            <Option value={status} key={status}>
+                                {ISSUE_STATUS[status]}
+                            </Option>
+                        ))}
+                    </Select>
+                )}
                 {(isCreating || isUpdating) && (
                     <div className="alert alert-info" role="alert">
                         Saving your new issue ...
