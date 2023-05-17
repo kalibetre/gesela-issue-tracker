@@ -32,7 +32,7 @@ const IssueCard = (props) => {
                             'card-tag ' + getStatusCSSClass(issue.status)
                         }
                     >
-                        {issue.status}
+                        {issue.status.replace('_', ' ')}
                     </div>
                 </footer>
             </div>
