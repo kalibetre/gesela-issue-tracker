@@ -14,7 +14,7 @@ const SignUp = () => {
     const [rptPassword, setRptPassword] = useState('');
     const [errors, setErrors] = useState({});
 
-    const [register, { isLoading, error }] = useRegisterMutation();
+    const [register, { isLoading, isError }] = useRegisterMutation();
 
     const navigate = useNavigate();
 
@@ -143,7 +143,7 @@ const SignUp = () => {
                     {errors.rptPassword}
                 </div>
             )}
-            {error && (
+            {isError && (
                 <div className="alert alert-danger" role="alert">
                     Registration failed. Please try again!.
                 </div>
