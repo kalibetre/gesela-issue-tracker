@@ -4,8 +4,16 @@ import {
     useUpdateIssueMutation,
 } from '../../api/issueApi';
 import { useGetProfileQuery } from '../../api/userApi';
-import { isArchived, isDraft, isHandler, isOwner } from '../../utils/issue';
+import {
+    isArchived,
+    isDraft,
+    isHandler,
+    isManager,
+    isOwner,
+    isSubmitted,
+} from '../../utils/issue';
 import { getStatusCSSClass } from '../../utils/utils';
+import AssignIssueModal from '../AssignIssueModal/AssignIssueModal';
 import EditIssueModal from '../EditIssueModal/EditIssueModal';
 import Modal from '../Modal/Modal';
 import './IssueDetail.css';
@@ -14,6 +22,7 @@ const IssueDetail = (props) => {
     const { issue } = props;
     const { data: currentUser } = useGetProfileQuery();
     const [openEdit, setOpenEdit] = useState(false);
+    const [openAssignIssue, setOpenAssignIssue] = useState(false);
     const [updateIssue, { isLoading: isUpdating, isError: updateError }] =
         useUpdateIssueMutation();
     const [deleteIssue, { isLoading: isDeleting, isError: deleteError }] =
@@ -89,6 +98,15 @@ const IssueDetail = (props) => {
                                 Edit
                             </button>
                         )}
+                    {!isManager(issue) && isSubmitted(issue) && (
+                        <button
+                            className="btn btn-primary"
+                            disabled={isUpdating || isDeleting}
+                            onClick={(e) => setOpenAssignIssue(true)}
+                        >
+                            Assign
+                        </button>
+                    )}
                 </>
             }
         >
@@ -97,6 +115,12 @@ const IssueDetail = (props) => {
                     issue={issue}
                     handleClose={(e) => setOpenEdit(false)}
                     disableSubmit
+                />
+            )}
+            {openAssignIssue && issue && (
+                <AssignIssueModal
+                    issue={issue}
+                    handleClose={(e) => setOpenAssignIssue(false)}
                 />
             )}
             <div className="isu-detail">
