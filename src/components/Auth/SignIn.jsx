@@ -8,12 +8,13 @@ import { deleteToken } from '../../utils/utils';
 import { SpinnerIcon } from '../Common/Icons';
 import FormPage from '../FormPage/FormPage';
 import { Input } from '../InputControls/InputControls';
-import LoadingPage from '../LoadingPage/LoadingPage';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [login, { isLoading, error }] = useLoginMutation();
+    const [errors, setErrors] = useState({});
+
+    const [login, { isLoading }] = useLoginMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -22,13 +23,35 @@ const SignIn = () => {
         dispatch(geselaApi.util.resetApiState());
     }, [dispatch]);
 
+    const checkValidation = () => {
+        const validationErrors = {};
+        if (!email) {
+            validationErrors.email = 'Email is required';
+        }
+        if (!password) {
+            validationErrors.password = 'Password is required';
+        }
+        return validationErrors;
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            let validationErrors = checkValidation();
+            if (Object.keys(validationErrors).length > 0) {
+                setErrors({ ...validationErrors });
+                return;
+            } else {
+                setErrors({});
+            }
             await login({ email, password }).unwrap();
             navigate('/');
         } catch (error) {
             resetAppState();
+            setErrors({
+                ...errors,
+                server: 'Email or password incorrect. Please try again.',
+            });
         }
     };
 
@@ -40,8 +63,6 @@ const SignIn = () => {
     useEffect(() => {
         resetAppState();
     }, [resetAppState]);
-
-    if (isLoading) return <LoadingPage />;
 
     return (
         <FormPage>
@@ -62,6 +83,11 @@ const SignIn = () => {
                     disabled={isLoading}
                     onChange={(event) => setEmail(event.target.value)}
                 />
+                {errors && errors.email && (
+                    <div className="alert alert-danger" role="alert">
+                        {errors.email}
+                    </div>
+                )}
                 <Input
                     type="password"
                     placeholder=""
@@ -72,9 +98,14 @@ const SignIn = () => {
                     disabled={isLoading}
                     onChange={(event) => setPassword(event.target.value)}
                 />
-                {error && (
+                {errors && errors.password && (
                     <div className="alert alert-danger" role="alert">
-                        SigIn failed. User name or password is incorrect.
+                        {errors.password}
+                    </div>
+                )}
+                {errors && errors.server && (
+                    <div className="alert alert-danger" role="alert">
+                        {errors.server}
                     </div>
                 )}
                 <div className="mdl-btn-container">
