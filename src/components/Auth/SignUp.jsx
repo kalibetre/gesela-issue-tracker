@@ -73,8 +73,7 @@ const SignUp = () => {
             </div>
 
             <h2 className="mdl-content-header">
-                Sign Up to get access to BeranaBug Enterprise Issue Tracking
-                System
+                Sign Up to get access to Gesela Enterprise Issue Tracking System
             </h2>
             <Input
                 type="text"

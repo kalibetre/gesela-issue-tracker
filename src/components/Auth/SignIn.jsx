@@ -71,7 +71,7 @@ const SignIn = () => {
             </div>
 
             <h2 className="mdl-content-header">
-                Login into BeranaBug Enterprise Issue Tracking System
+                Login into Gesela Enterprise Issue Tracking System
             </h2>
             <form onSubmit={handleSubmit}>
                 <Input
