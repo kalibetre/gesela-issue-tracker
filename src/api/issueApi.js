@@ -28,29 +28,29 @@ const issueApi = geselaApi.injectEndpoints({
             },
         }),
         getIssue: builder.query({
-            query: (id) => ({
-                url: `/issues/${id}`,
+            query: (uuid) => ({
+                url: `/issues/${uuid}`,
                 method: 'GET',
             }),
-            providesTags: (result, error, id) => [{ type: 'Issues', id }],
+            providesTags: (result, error, uuid) => [{ type: 'Issues', uuid }],
         }),
         updateIssue: builder.mutation({
-            query: ({ id, ...changes }) => ({
-                url: `/issues/${id}`,
+            query: ({ uuid, ...changes }) => ({
+                url: `/issues/${uuid}`,
                 method: 'PUT',
                 body: changes,
             }),
-            invalidatesTags: (result, error, { id }) => [
-                { type: 'Issues', id },
+            invalidatesTags: (result, error, { uuid }) => [
+                { type: 'Issues', uuid },
             ],
         }),
         deleteIssue: builder.mutation({
-            query: (id) => ({
-                url: `/issues/${id}`,
+            query: (uuid) => ({
+                url: `/issues/${uuid}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: (result, error, { id }) => [
-                { type: 'Issues', id },
+            invalidatesTags: (result, error, { uuid }) => [
+                { type: 'Issues', uuid },
             ],
         }),
     }),
