@@ -1,11 +1,10 @@
-import { isDraft } from '@reduxjs/toolkit';
 import React, { useState } from 'react';
 import {
     useCreateIssueMutation,
     useUpdateIssueMutation,
 } from '../../api/issueApi';
 import { useGetProfileQuery } from '../../api/userApi';
-import { isOwner } from '../../utils/issue';
+import { isDraft, isOwner } from '../../utils/issue';
 import { Input, TextArea } from '../InputControls/InputControls';
 import Modal from '../Modal/Modal';
 import './EditIssueModal.css';
