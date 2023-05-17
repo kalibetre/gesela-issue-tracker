@@ -3,10 +3,10 @@ import { Outlet } from 'react-router-dom';
 import withAuth from '../../hoc/withAuth';
 import Button from '../Button/Button';
 import { ICONS } from '../Common/Icons';
+import EditIssueModal from '../EditIssueModal/EditIssueModal';
 import Header from '../Header/Header';
 import LinkButton from '../LinkButton/LinkButton';
 import LinkGroup from '../LinkGroup/LinkGroup';
-import NewIssueModal from '../NewIssueModal/NewIssueModal';
 import SideBar from '../SideBar/SideBar';
 import './App.css';
 
@@ -22,7 +22,7 @@ function App() {
         <SideBar>
             <div className="ap-new-issue-btn-container">
                 {newIssueModalOpen && (
-                    <NewIssueModal
+                    <EditIssueModal
                         handleClose={() => setNewIssueModalOpen(false)}
                     />
                 )}
