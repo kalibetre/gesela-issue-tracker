@@ -42,14 +42,15 @@ const EmployeeDetail = (props) => {
         if (employee.uuid === 'new' && password !== rptPassword) {
             validationErrors.rptpassword = 'Passwords do not match';
         }
-        setErrors(validationErrors);
+        return validationErrors;
     };
 
     const handleSave = async (event) => {
         event.preventDefault();
         try {
-            checkValidation();
-            if (Object.keys(errors).length > 0) {
+            let validationErrors = checkValidation();
+            if (Object.keys(validationErrors).length > 0) {
+                setErrors({ ...validationErrors });
                 return;
             }
             if (employee.uuid === 'new') {
