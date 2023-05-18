@@ -98,7 +98,7 @@ const IssueDetail = (props) => {
                                 Edit
                             </button>
                         )}
-                    {!isManager(issue) && isSubmitted(issue) && (
+                    {isManager(currentUser) && isSubmitted(issue) && (
                         <button
                             className="btn btn-primary"
                             disabled={isUpdating || isDeleting}
