@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useGetProfileQuery } from '../../api/userApi';
 import withAuth from '../../hoc/withAuth';
 import Button from '../Button/Button';
 import { ICONS } from '../Common/Icons';
@@ -11,6 +12,7 @@ import SideBar from '../SideBar/SideBar';
 import './App.css';
 
 function App() {
+    const { data: currentUser } = useGetProfileQuery();
     const [toggleSideBar, setToggleSideBar] = useState(false);
     const [newIssueModalOpen, setNewIssueModalOpen] = useState(false);
 
@@ -71,11 +73,13 @@ function App() {
                     icon={ICONS.employees}
                     label="Employees"
                 />
-                <LinkButton
-                    to="/customers"
-                    icon={ICONS.customers}
-                    label="Customers"
-                />
+                {currentUser && currentUser.role === 'ADMIN' && (
+                    <LinkButton
+                        to="/customers"
+                        icon={ICONS.customers}
+                        label="Customers"
+                    />
+                )}
             </LinkGroup>
             <LinkGroup title="Others">
                 <LinkButton to="/help" icon={ICONS.help} label="Help" />
@@ -102,7 +106,7 @@ function App() {
                                 onClick={handleToggleSideBar}
                             >
                                 <div className="ap-sidebar-floating">
-                                    {sideBar}
+                                    {currentUser && sideBar}
                                 </div>
                             </div>
                         )}
