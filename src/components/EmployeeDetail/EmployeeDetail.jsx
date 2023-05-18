@@ -5,11 +5,12 @@ import {
     useDeleteEmployeeMutation,
     useUpdateEmployeeMutation,
 } from '../../api/employeeApi';
-import { useGetRolesQuery } from '../../api/userApi';
+import { useGetProfileQuery, useGetRolesQuery } from '../../api/userApi';
 import { Input, Option, Select } from '../InputControls/InputControls';
 import Modal from '../Modal/Modal';
 
 const EmployeeDetail = (props) => {
+    const { data: currentUser } = useGetProfileQuery();
     const [employee, setEmployee] = useState(props.employee);
     const [password, setPassword] = useState('');
     const [rptPassword, setRptPassword] = useState('');
@@ -93,6 +94,10 @@ const EmployeeDetail = (props) => {
         }
     };
 
+    const isAdmin = currentUser && currentUser.role === 'ADMIN';
+    const isReadOnly =
+        updateLoading || deleteLoading || createLoading || !isAdmin;
+
     return (
         <form onSubmit={(e) => e.preventDefault()}>
             <Modal
@@ -109,27 +114,33 @@ const EmployeeDetail = (props) => {
                         >
                             Close
                         </button>
-                        <button
-                            className="btn btn-danger"
-                            disabled={
-                                updateLoading ||
-                                deleteLoading ||
-                                createLoading ||
-                                employee.uuid === 'new'
-                            }
-                            onClick={handleDelete}
-                        >
-                            Delete
-                        </button>
-                        <button
-                            className="btn btn-primary"
-                            disabled={
-                                updateLoading || deleteLoading || createLoading
-                            }
-                            onClick={handleSave}
-                        >
-                            Save
-                        </button>
+                        {isAdmin && (
+                            <button
+                                className="btn btn-danger"
+                                disabled={
+                                    updateLoading ||
+                                    deleteLoading ||
+                                    createLoading ||
+                                    employee.uuid === 'new'
+                                }
+                                onClick={handleDelete}
+                            >
+                                Delete
+                            </button>
+                        )}
+                        {isAdmin && (
+                            <button
+                                className="btn btn-primary"
+                                disabled={
+                                    updateLoading ||
+                                    deleteLoading ||
+                                    createLoading
+                                }
+                                onClick={handleSave}
+                            >
+                                Save
+                            </button>
+                        )}
                     </>
                 }
             >
@@ -139,7 +150,7 @@ const EmployeeDetail = (props) => {
                     id="emp-name"
                     label="Name"
                     value={employee.name}
-                    disabled={updateLoading || deleteLoading || createLoading}
+                    disabled={isReadOnly}
                     onChange={(event) =>
                         setEmployee((prev) => ({
                             ...prev,
@@ -158,7 +169,7 @@ const EmployeeDetail = (props) => {
                     id="emp-email"
                     label="Email"
                     value={employee.email}
-                    disabled={updateLoading || deleteLoading || createLoading}
+                    disabled={isReadOnly}
                     onChange={(event) =>
                         setEmployee((prev) => ({
                             ...prev,
@@ -177,7 +188,7 @@ const EmployeeDetail = (props) => {
                     id="emp-phone"
                     label="Phone"
                     value={employee.phone}
-                    disabled={updateLoading || deleteLoading || createLoading}
+                    disabled={isReadOnly}
                     onChange={(event) =>
                         setEmployee((prev) => ({
                             ...prev,
@@ -198,9 +209,7 @@ const EmployeeDetail = (props) => {
                             id="emp-pwd"
                             label="Password"
                             value={password}
-                            disabled={
-                                updateLoading || deleteLoading || createLoading
-                            }
+                            disabled={isReadOnly}
                             onChange={(event) =>
                                 setPassword(event.target.value)
                             }
@@ -216,9 +225,7 @@ const EmployeeDetail = (props) => {
                             id="emp-rpt-pwd"
                             label="Repeat Password"
                             value={rptPassword}
-                            disabled={
-                                updateLoading || deleteLoading || createLoading
-                            }
+                            disabled={isReadOnly}
                             onChange={(event) =>
                                 setRptPassword(event.target.value)
                             }
@@ -234,9 +241,7 @@ const EmployeeDetail = (props) => {
                     <Select
                         id="department"
                         label="Department"
-                        disabled={
-                            updateLoading || deleteLoading || createLoading
-                        }
+                        disabled={isReadOnly}
                         value={employee.department.uuid}
                         onChange={(event) =>
                             setEmployee((prev) => ({
@@ -259,9 +264,7 @@ const EmployeeDetail = (props) => {
                     <Select
                         id="role"
                         label="Role"
-                        disabled={
-                            updateLoading || deleteLoading || createLoading
-                        }
+                        disabled={isReadOnly}
                         value={employee.role}
                         onChange={(event) =>
                             setEmployee((prev) => ({
