@@ -41,7 +41,25 @@
 	border-radius: 4px;
 	font-size: 16px;
 	width: 100%;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: transparent;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KICA8cGF0aCBmaWxsPSJncmF5IiBkPSJNMTAsMjMyLjdsNDkwLDUzNC41bDQ5MC01MzQuNUgxMHoiIC8+DQo8L3N2Zz4=);
+	background-repeat: no-repeat;
+	background-position: right;
+	background-size: 15px;
+	background-position-y: 50%;
+	background-position-x: 98%;
 }
+
+.input-container optgroup {
+	padding: .8rem;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	width: 100%;
+}
+
 
 .input-container option {
 	padding: .8rem;
