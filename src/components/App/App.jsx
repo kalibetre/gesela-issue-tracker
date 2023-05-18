@@ -30,7 +30,7 @@ function App() {
                     className="btn btn-primary"
                     onClick={() => setNewIssueModalOpen(true)}
                 >
-                    New Issue
+                    Create New Issue
                 </Button>
             </div>
             <LinkGroup title="Issues">
