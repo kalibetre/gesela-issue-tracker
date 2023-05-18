@@ -113,14 +113,14 @@ const IssueDetail = (props) => {
             {openEdit && issue && (
                 <EditIssueModal
                     issue={issue}
-                    handleClose={(e) => setOpenEdit(false)}
+                    handleClose={props.handleClose}
                     disableSubmit
                 />
             )}
             {openAssignIssue && issue && (
                 <AssignIssueModal
                     issue={issue}
-                    handleClose={(e) => setOpenAssignIssue(false)}
+                    handleClose={props.handleClose}
                 />
             )}
             <div className="isu-detail">
