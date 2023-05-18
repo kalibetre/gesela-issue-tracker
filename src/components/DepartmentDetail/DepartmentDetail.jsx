@@ -4,10 +4,12 @@ import {
     useDeleteDepartmentMutation,
     useUpdateDepartmentMutation,
 } from '../../api/departmentApi';
+import { useGetProfileQuery } from '../../api/userApi';
 import { Input } from '../InputControls/InputControls';
 import Modal from '../Modal/Modal';
 
 const DepartmentDetail = (props) => {
+    const { data: currentUser } = useGetProfileQuery();
     const { department } = props;
     const [errors, setErrors] = useState([]);
 
@@ -74,6 +76,10 @@ const DepartmentDetail = (props) => {
         }
     };
 
+    const isAdmin = currentUser && currentUser.role === 'ADMIN';
+    const isReadOnly =
+        updateLoading || deleteLoading || createLoading || !isAdmin;
+
     return (
         <form onSubmit={(e) => e.preventDefault()}>
             <Modal
@@ -90,27 +96,33 @@ const DepartmentDetail = (props) => {
                         >
                             Close
                         </button>
-                        <button
-                            className="btn btn-danger"
-                            disabled={
-                                updateLoading ||
-                                deleteLoading ||
-                                createLoading ||
-                                department.uuid === 'new'
-                            }
-                            onClick={handleDelete}
-                        >
-                            Delete
-                        </button>
-                        <button
-                            className="btn btn-primary"
-                            disabled={
-                                updateLoading || deleteLoading || createLoading
-                            }
-                            onClick={handleSave}
-                        >
-                            Save
-                        </button>
+                        {isAdmin && (
+                            <button
+                                className="btn btn-danger"
+                                disabled={
+                                    updateLoading ||
+                                    deleteLoading ||
+                                    createLoading ||
+                                    department.uuid === 'new'
+                                }
+                                onClick={handleDelete}
+                            >
+                                Delete
+                            </button>
+                        )}
+                        {isAdmin && (
+                            <button
+                                className="btn btn-primary"
+                                disabled={
+                                    updateLoading ||
+                                    deleteLoading ||
+                                    createLoading
+                                }
+                                onClick={handleSave}
+                            >
+                                Save
+                            </button>
+                        )}
                     </>
                 }
             >
@@ -118,18 +130,18 @@ const DepartmentDetail = (props) => {
                     type="text"
                     name="dept-name"
                     id="dept-name"
-                    label="Department Name"
+                    label="Name"
                     value={name}
-                    disabled={updateLoading || deleteLoading || createLoading}
+                    disabled={isReadOnly}
                     onChange={(event) => setName(event.target.value)}
                 />
                 <Input
                     type="text"
                     name="dept-desc"
                     id="dept-desc"
-                    label="Department Description"
+                    label="Description"
                     value={description}
-                    disabled={updateLoading || deleteLoading || createLoading}
+                    disabled={isReadOnly}
                     onChange={(event) => setDescription(event.target.value)}
                 />
                 {updateError && (

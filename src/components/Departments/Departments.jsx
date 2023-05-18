@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useGetDepartmentsQuery } from '../../api/departmentApi';
+import { useGetProfileQuery } from '../../api/userApi';
 import '../Common/Cards.css';
 import Department from '../Department/Department';
 import DepartmentDetail from '../DepartmentDetail/DepartmentDetail';
@@ -7,6 +8,7 @@ import StatusMessage from '../StatusMessage/StatusMessage';
 import Workspace from '../Workspace/Workspace';
 
 const Departments = () => {
+    const { data: currentUser } = useGetProfileQuery();
     const { data: departments, isLoading, isError } = useGetDepartmentsQuery();
     const [selectedDepartment, setSelectedDepartment] = useState(null);
 
@@ -17,6 +19,8 @@ const Departments = () => {
             description: '',
         });
     };
+
+    const isAdmin = currentUser && currentUser.role === 'ADMIN';
 
     return (
         <Workspace title="Departments">
@@ -43,7 +47,12 @@ const Departments = () => {
                                     }
                                 />
                             ))}
-                        <Department actionCard onClick={handleNewDepartment} />
+                        {isAdmin && (
+                            <Department
+                                actionCard
+                                onClick={handleNewDepartment}
+                            />
+                        )}
                     </div>
                 </div>
             )}
