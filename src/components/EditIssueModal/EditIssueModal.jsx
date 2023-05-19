@@ -64,8 +64,9 @@ const EditIssueModal = (props) => {
                     }).unwrap();
                 }
             } else {
-                if (isHandler(currentUser)) {
+                if (isHandler(issue, currentUser)) {
                     await updateIssue({
+                        uuid: issue.uuid,
                         status: issue.status,
                     }).unwrap();
                 } else {
