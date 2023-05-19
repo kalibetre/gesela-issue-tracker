@@ -140,6 +140,14 @@ const IssueDetail = (props) => {
                     <p className="isu-detail-desc">{issue.description}</p>
                 </div>
                 <div className="isu-detail-row">
+                    <p className="isu-detail-label">Assigned To</p>
+                    <p className="isu-detail-desc">
+                        {issue.handler
+                            ? issue.handler.name
+                            : 'Not Yet Assigned'}
+                    </p>
+                </div>
+                <div className="isu-detail-row">
                     <p className="isu-detail-label isu-detail-label-center">
                         Notifications
                     </p>
