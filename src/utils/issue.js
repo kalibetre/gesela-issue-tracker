@@ -13,10 +13,8 @@ export const isHandler = (issue, user) =>
 export const isManager = (user) => user && user.role === 'ISSUE_MANAGER';
 
 export const ISSUE_STATUS = {
-    DRAFT: 'DRAFT',
     PENDING: 'PENDING',
     IN_PROGRESS: 'IN PROGRESS',
-    COMPLETED: 'COMPLETED',
+    COMPLETE: 'COMPLETE',
     ARCHIVED: 'ARCHIVED',
-    CLOSED: 'CLOSED',
 };
