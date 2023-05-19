@@ -25,6 +25,14 @@ const IssueCard = (props) => {
                 </header>
                 <article className="card-content">
                     <p>{truncateText(issue.description, 200)}</p>
+                    <div className="card-content-section">
+                        <span className="card-content-label">Assigned To</span>
+                        <span className="card-content-value">
+                            {issue.handler
+                                ? issue.handler.name
+                                : 'Not Yet Assigned'}
+                        </span>
+                    </div>
                 </article>
                 <footer className="card-footer">
                     <div

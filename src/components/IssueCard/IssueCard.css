@@ -1,6 +1,6 @@
 .issue-card {
 	width: 320px;
-	height: 200px;
+	height: 225px;
 }
 
 @media screen and (max-width: 768px) {
