@@ -88,6 +88,16 @@ const EditIssueModal = (props) => {
         }
     };
 
+    const isReadOnly = () => {
+        if (issue.uuid === 'new') {
+            return false;
+        }
+        if (isOwner(issue, currentUser) && isDraft(issue)) {
+            return false;
+        }
+        return true;
+    };
+
     return (
         <Modal
             title="Edit Issue"
@@ -128,7 +138,7 @@ const EditIssueModal = (props) => {
                     onChange={(e) =>
                         setIssue((prev) => ({ ...prev, title: e.target.value }))
                     }
-                    disabled={!isOwner(issue, currentUser) || !isDraft(issue)}
+                    disabled={isReadOnly() || isCreating || isUpdating}
                 />
                 {errors.title && (
                     <div className="alert alert-danger" role="alert">
@@ -145,7 +155,7 @@ const EditIssueModal = (props) => {
                             description: e.target.value,
                         }))
                     }
-                    disabled={!isOwner(issue, currentUser) || !isDraft(issue)}
+                    disabled={isReadOnly() || isCreating || isUpdating}
                 />
                 {isHandler(issue, currentUser) && (
                     <Select
