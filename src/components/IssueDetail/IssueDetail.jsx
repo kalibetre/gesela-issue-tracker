@@ -70,7 +70,6 @@ const IssueDetail = (props) => {
                 props.handleClose();
             }
         } catch (e) {
-            console.log(e);
             setError('Unable to archive the issue.');
         }
     };
