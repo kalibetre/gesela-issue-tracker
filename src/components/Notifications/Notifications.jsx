@@ -3,6 +3,7 @@ import NotificationDetail from '../NotificationDetail/NotificationDetail';
 import Table from '../Table/Table';
 import Workspace from '../Workspace/Workspace';
 import './Notifications.css';
+import MessageCard from '../MessageCard/MessageCard';
 
 const Notifications = (props) => {
     const [selectedNotification, setSelectedNotification] = useState(null);
@@ -19,9 +20,10 @@ const Notifications = (props) => {
     if (!notifications.length) {
         return (
             <Workspace title="Notifications">
-                <div className="notifications">
-                    <p>No notifications</p>
-                </div>
+                <MessageCard
+                    title="No notifications found"
+                    subtitle="There are no notifications to display."
+                />
             </Workspace>
         );
     }
