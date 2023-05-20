@@ -27,7 +27,13 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <Issues title="All Issues" groupBy="status" />,
+                element: (
+                    <Issues
+                        title="All Issues"
+                        groupBy="status"
+                        filter={(issue) => !issue.archived}
+                    />
+                ),
             },
         ],
     },
@@ -40,14 +46,22 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <Issues title="All Issues" groupBy="status" />,
+                element: (
+                    <Issues
+                        title="All Issues"
+                        groupBy="status"
+                        filter={(issue) => !issue.archived}
+                    />
+                ),
             },
             {
                 path: 'draft',
                 element: (
                     <Issues
                         title="Draft Issues"
-                        filter={(issue) => issue.status === 'DRAFT'}
+                        filter={(issue) =>
+                            issue.status === 'DRAFT' && !issue.archived
+                        }
                     />
                 ),
             },
@@ -56,7 +70,7 @@ const router = createBrowserRouter([
                 element: (
                     <Issues
                         title="Archived Issues"
-                        filter={(issue) => issue.status === 'ARCHIVED'}
+                        filter={(issue) => issue.archived}
                     />
                 ),
             },
@@ -65,7 +79,9 @@ const router = createBrowserRouter([
                 element: (
                     <Issues
                         title="Closed Issues"
-                        filter={(issue) => issue.status === 'CLOSED'}
+                        filter={(issue) =>
+                            issue.status === 'CLOSED' && !issue.archived
+                        }
                     />
                 ),
             },

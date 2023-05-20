@@ -53,6 +53,24 @@ const issueApi = geselaApi.injectEndpoints({
                 { type: 'Issues', uuid },
             ],
         }),
+        archiveIssue: builder.mutation({
+            query: (uuid) => ({
+                url: `/issues/${uuid}/archive`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: (result, error, { uuid }) => [
+                { type: 'Issues', uuid },
+            ],
+        }),
+        restoreIssue: builder.mutation({
+            query: (uuid) => ({
+                url: `/issues/${uuid}/restore`,
+                method: 'PUT',
+            }),
+            invalidatesTags: (result, error, { uuid }) => [
+                { type: 'Issues', uuid },
+            ],
+        }),
     }),
 });
 
@@ -62,6 +80,8 @@ export const {
     useGetIssueQuery,
     useUpdateIssueMutation,
     useDeleteIssueMutation,
+    useArchiveIssueMutation,
+    useRestoreIssueMutation,
 } = issueApi;
 
 export default issueApi;

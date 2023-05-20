@@ -82,6 +82,7 @@ const Issues = (props) => {
                 <div className="card-list-container">
                     {Object.keys(groupedIssues).map((group) => {
                         const issueGroup = groupedIssues[group];
+                        if (issueGroup.length === 0) return null;
                         return (
                             <div key={group} className="issue-group">
                                 <h2

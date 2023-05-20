@@ -43,7 +43,6 @@ const status_class = {
     DRAFT: 'isu-draft',
     PENDING: 'isu-pending',
     IN_PROGRESS: 'isu-in-progress',
-    COMPLETED: 'isu-completed',
     ARCHIVED: 'isu-archived',
     CLOSED: 'isu-closed',
 };

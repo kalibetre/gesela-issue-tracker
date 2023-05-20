@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {
+    useArchiveIssueMutation,
     useDeleteIssueMutation,
+    useRestoreIssueMutation,
     useUpdateIssueMutation,
 } from '../../api/issueApi';
 import { useGetProfileQuery } from '../../api/userApi';
 import {
-    isArchived,
+    isClosed,
     isDraft,
     isHandler,
     isManager,
@@ -27,6 +29,10 @@ const IssueDetail = (props) => {
         useUpdateIssueMutation();
     const [deleteIssue, { isLoading: isDeleting, isError: deleteError }] =
         useDeleteIssueMutation();
+    const [archiveIssue, { isLoading: isArchiving, isError: archiveError }] =
+        useArchiveIssueMutation();
+    const [restoreIssue, { isLoading: isRestoring, isError: restoreError }] =
+        useRestoreIssueMutation();
     const [error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -56,6 +62,34 @@ const IssueDetail = (props) => {
         }
     };
 
+    const handleArchive = async (e) => {
+        e.preventDefault();
+        try {
+            if (issue) {
+                await archiveIssue(issue.uuid).unwrap();
+                props.handleClose();
+            }
+        } catch (e) {
+            console.log(e);
+            setError('Unable to archive the issue.');
+        }
+    };
+
+    const handleRestore = async (e) => {
+        e.preventDefault();
+        try {
+            if (issue) {
+                await restoreIssue(issue.uuid).unwrap();
+                props.handleClose();
+            }
+        } catch (e) {
+            setError('Unable to restore the issue.');
+        }
+    };
+
+    const disableActions =
+        isUpdating || isDeleting || isArchiving || isRestoring;
+
     return (
         <Modal
             title="Issue Detail"
@@ -65,7 +99,7 @@ const IssueDetail = (props) => {
                     <button
                         className="btn btn-default"
                         onClick={props.handleClose}
-                        disabled={isUpdating || isDeleting}
+                        disabled={disableActions}
                     >
                         Close
                     </button>
@@ -73,27 +107,47 @@ const IssueDetail = (props) => {
                         <button
                             className="btn btn-danger"
                             onClick={handleDelete}
-                            disabled={isUpdating || isDeleting}
+                            disabled={disableActions}
                         >
                             Delete
+                        </button>
+                    )}
+                    {(isDraft(issue) || isClosed(issue)) &&
+                        !issue.archived &&
+                        isOwner(issue, currentUser) && (
+                            <button
+                                className="btn btn-danger"
+                                onClick={handleArchive}
+                                disabled={disableActions}
+                            >
+                                Archive
+                            </button>
+                        )}
+                    {issue.archived && isOwner(issue, currentUser) && (
+                        <button
+                            className="btn btn-primary"
+                            onClick={handleRestore}
+                            disabled={disableActions}
+                        >
+                            Restore
                         </button>
                     )}
                     {isDraft(issue) && isOwner(issue, currentUser) && (
                         <button
                             className="btn btn-primary"
                             onClick={handleSubmit}
-                            disabled={isUpdating || isDeleting}
+                            disabled={disableActions}
                         >
                             Submit
                         </button>
                     )}
                     {((isOwner(issue, currentUser) && isDraft(issue)) ||
                         isHandler(issue, currentUser)) &&
-                        !isArchived(issue) && (
+                        !issue.archived && (
                             <button
                                 className="btn btn-primary"
                                 onClick={(e) => setOpenEdit(true)}
-                                disabled={isUpdating || isDeleting}
+                                disabled={disableActions}
                             >
                                 Edit
                             </button>
@@ -101,7 +155,7 @@ const IssueDetail = (props) => {
                     {isManager(currentUser) && isSubmitted(issue) && (
                         <button
                             className="btn btn-primary"
-                            disabled={isUpdating || isDeleting}
+                            disabled={disableActions}
                             onClick={(e) => setOpenAssignIssue(true)}
                         >
                             Assign
@@ -188,7 +242,11 @@ const IssueDetail = (props) => {
                         </div>
                     </div>
                 )}
-                {(error || updateError || deleteError) && (
+                {(error ||
+                    updateError ||
+                    deleteError ||
+                    archiveError ||
+                    restoreError) && (
                     <div className="isu-detail-row">
                         <div className="alert alert-danger" role="alert">
                             Unable to perform the operation. Please try again.
