@@ -1,0 +1,84 @@
+.report-card {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 490px;
+	height: 200px;
+	padding: 20px;
+	border-radius: 5px;
+	background-color: #fff;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
+
+.report-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.report-stats {
+	width: 50%;
+	border-right: 0.5px solid #ccc;
+	display: flex;
+	flex-direction: column;
+}
+
+.report-subtitle {
+	font-size: 13px;
+}
+
+.report-title {
+	font-size: 18px;
+	margin-top: 8px;
+	font-weight: bolder;
+}
+
+.report-chart {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.report-data-container {
+	display: flex;
+	height: 100%;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.report-data {
+	display: grid;
+	grid-template-columns: 60px auto;
+	grid-template-rows: repeat(30px);
+	align-items: center;
+	gap: 10px;
+}
+
+.report-data-value {
+	font-size: 22px;
+	font-weight: bolder;
+	text-align: right;
+}
+
+.report-data-key {
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+}
+
+.report-card span {
+	background-color: red;
+	width: 10px;
+	height: 10px;
+	display: block;
+	margin-right: 5px;
+}
+
+@media screen and (max-width: 768px) {
+	.report-card {
+		width: 100%;
+	}
+}
