@@ -36,6 +36,20 @@ function App() {
                 </Button>
             </div>
             <LinkGroup title="Issues">
+                {currentUser && currentUser.role === 'ISSUE_HANDLER' && (
+                    <LinkButton
+                        to="/issues/assigned"
+                        icon={ICONS.issues}
+                        label="Assigned to Me"
+                    />
+                )}
+                {currentUser && currentUser.role === 'ISSUE_MANAGER' && (
+                    <LinkButton
+                        to="/issues/submitted"
+                        icon={ICONS.issues}
+                        label="Submitted Issues"
+                    />
+                )}
                 <LinkButton
                     to="/issues"
                     icon={ICONS.issues}
