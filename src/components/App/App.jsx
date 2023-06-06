@@ -75,13 +75,15 @@ function App() {
                     icon={ICONS.archived}
                     label="Archived Issues"
                 />
-                {currentUser && currentUser.role === 'ISSUE_MANAGER' && (
-                    <LinkButton
-                        to="/report"
-                        icon={ICONS.report}
-                        label="Report"
-                    />
-                )}
+                {currentUser &&
+                    (currentUser.role === 'ISSUE_MANAGER' ||
+                        currentUser.role === 'ADMIN') && (
+                        <LinkButton
+                            to="/report"
+                            icon={ICONS.report}
+                            label="Report"
+                        />
+                    )}
             </LinkGroup>
             <LinkGroup title="Organization">
                 <LinkButton
