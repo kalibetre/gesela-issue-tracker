@@ -21,6 +21,22 @@ const userApi = geselaApi.injectEndpoints({
                 return [{ type: 'Users', id: 'ROLE' }];
             },
         }),
+        getNotifications: builder.query({
+            query: () => ({
+                url: '/users/notifications',
+                method: 'GET',
+            }),
+            providesTags: (result) => {
+                if (!result) return [{ type: 'Notifications', id: 'LIST' }];
+                return [
+                    ...result.map(({ uuid }) => ({
+                        type: 'Notifications',
+                        uuid,
+                    })),
+                    { type: 'Notifications', id: 'LIST' },
+                ];
+            },
+        }),
         updateProfile: builder.mutation({
             query: (profile) => ({
                 url: '/users/profile',
@@ -51,6 +67,7 @@ const userApi = geselaApi.injectEndpoints({
 export const {
     useGetProfileQuery,
     useGetRolesQuery,
+    useGetNotificationsQuery,
     useUpdateProfileMutation,
     useUpdateUserMutation,
     useChangeRoleMutation,
