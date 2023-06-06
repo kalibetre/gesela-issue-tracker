@@ -3,8 +3,7 @@ import './Table.css';
 
 const Table = (props) => {
     const { data } = props;
-    let { ignoreAttributes, highlightAttr } = props;
-
+    let { ignoreAttributes, highlightAttr, sortBy } = props;
     if (!data.length) {
         return (
             <div className="table">
@@ -14,6 +13,8 @@ const Table = (props) => {
     }
 
     if (!ignoreAttributes) ignoreAttributes = {};
+    if (sortBy) data.sort(sortBy);
+
     const ignoreKeys = Object.keys(ignoreAttributes);
     const ignoreIndexes = Object.values(ignoreAttributes);
 
@@ -33,7 +34,7 @@ const Table = (props) => {
                         <tr
                             key={index}
                             className={
-                                highlightAttr && notification[highlightAttr]
+                                highlightAttr && !notification[highlightAttr]
                                     ? 'row-highlight'
                                     : ''
                             }
