@@ -12,6 +12,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import Issues from './components/Issues/Issues';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import Notifications from './components/Notifications/Notifications';
+import Report from './components/Report/Report';
 import './css-reset.css';
 import './index.css';
 import store from './store/store';
@@ -146,6 +147,17 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <Customers />,
+            },
+        ],
+    },
+    {
+        path: 'report',
+        element: <App />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: '',
+                element: <Report />,
             },
         ],
     },
