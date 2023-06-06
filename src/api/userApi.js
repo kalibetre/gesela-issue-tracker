@@ -37,6 +37,15 @@ const userApi = geselaApi.injectEndpoints({
                 ];
             },
         }),
+        setNotificationAsRead: builder.mutation({
+            query: (uuid) => ({
+                url: `/users/notifications/${uuid}/read`,
+                method: 'PUT',
+            }),
+            invalidatesTags: (result, error, { uuid }) => [
+                { type: 'Notifications', uuid },
+            ],
+        }),
         updateProfile: builder.mutation({
             query: (profile) => ({
                 url: '/users/profile',
@@ -68,6 +77,7 @@ export const {
     useGetProfileQuery,
     useGetRolesQuery,
     useGetNotificationsQuery,
+    useSetNotificationAsReadMutation,
     useUpdateProfileMutation,
     useUpdateUserMutation,
     useChangeRoleMutation,
