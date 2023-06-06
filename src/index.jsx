@@ -15,7 +15,6 @@ import Notifications from './components/Notifications/Notifications';
 import './css-reset.css';
 import './index.css';
 import store from './store/store';
-import { NOTIFICATIONS } from './utils/data';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -94,7 +93,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <Notifications notifications={NOTIFICATIONS} />,
+                element: <Notifications />,
             },
         ],
     },
