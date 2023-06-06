@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useGetIssuesQuery } from '../../api/issueApi';
+import { useGetProfileQuery } from '../../api/userApi';
 import { groupByAttribute } from '../../utils/utils';
 import '../Common/Cards.css';
 import EditIssueModal from '../EditIssueModal/EditIssueModal';
@@ -14,8 +15,8 @@ const Issues = (props) => {
     const { data: issues, isLoading, isError } = useGetIssuesQuery();
     const [selectedIssue, setSelectedIssue] = useState(null);
     const [newIssueModalOpen, setNewIssueModalOpen] = useState(false);
-
-    const { groupBy, filter } = props;
+    const { data: currentUser } = useGetProfileQuery();
+    const { groupBy, filter, wrappedFilter } = props;
     const ALL = 'ALL';
     let groupedIssues = { ALL: issues };
 
@@ -23,7 +24,9 @@ const Issues = (props) => {
 
     if (issues && filter) {
         Object.keys(groupedIssues).forEach((group) => {
-            groupedIssues[group] = groupedIssues[group].filter(filter);
+            groupedIssues[group] = groupedIssues[group].filter(
+                wrappedFilter ? wrappedFilter(currentUser) : filter
+            );
         });
     }
 

@@ -93,6 +93,16 @@ const router = createBrowserRouter([
                     />
                 ),
             },
+            {
+                path: 'assigned',
+                element: (
+                    <Issues
+                        title="Assigned"
+                        wrappedFilter={(user) => (issue) =>
+                            !issue.archived && issue.handler.uuid === user.uuid}
+                    />
+                ),
+            },
         ],
     },
     {
