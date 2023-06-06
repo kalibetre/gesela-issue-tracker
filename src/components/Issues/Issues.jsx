@@ -16,14 +16,10 @@ const Issues = (props) => {
     const [newIssueModalOpen, setNewIssueModalOpen] = useState(false);
 
     const { groupBy, filter } = props;
-    let groupedIssues = null;
     const ALL = 'ALL';
+    let groupedIssues = { ALL: issues };
 
-    if (issues && groupBy) {
-        groupedIssues = groupByAttribute(issues, groupBy);
-    } else {
-        groupedIssues = { ALL: issues };
-    }
+    if (issues && groupBy) groupedIssues = groupByAttribute(issues, groupBy);
 
     if (issues && filter) {
         Object.keys(groupedIssues).forEach((group) => {
@@ -31,29 +27,30 @@ const Issues = (props) => {
         });
     }
 
-    if (groupedIssues) {
-        const count = Object.keys(groupedIssues).reduce((acc, group) => {
-            return acc + groupedIssues[group].length;
-        }, 0);
-        if (count === 0) {
-            return (
-                <Workspace title={props.title}>
-                    {newIssueModalOpen && (
-                        <EditIssueModal
-                            handleClose={() => setNewIssueModalOpen(false)}
-                        />
-                    )}
-                    <MessageCard
-                        title={`No issues this category`}
-                        subtitle="There are no issues to display. Click the button below to create a new issue."
-                        action={{
-                            label: 'Create New Issue',
-                            onClick: () => setNewIssueModalOpen(true),
-                        }}
+    const count = issues
+        ? Object.keys(groupedIssues).reduce((acc, group) => {
+              return acc + groupedIssues[group].length;
+          }, 0)
+        : 0;
+
+    if (count === 0) {
+        return (
+            <Workspace title={props.title}>
+                {newIssueModalOpen && (
+                    <EditIssueModal
+                        handleClose={() => setNewIssueModalOpen(false)}
                     />
-                </Workspace>
-            );
-        }
+                )}
+                <MessageCard
+                    title={`No issues this category`}
+                    subtitle="There are no issues to display. Click the button below to create a new issue."
+                    action={{
+                        label: 'Create New Issue',
+                        onClick: () => setNewIssueModalOpen(true),
+                    }}
+                />
+            </Workspace>
+        );
     }
 
     return (
