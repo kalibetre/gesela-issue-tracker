@@ -27,6 +27,12 @@ const departmentApi = geselaApi.injectEndpoints({
                 ];
             },
         }),
+        getStats: builder.query({
+            query: () => ({
+                url: '/departments/stats',
+                method: 'GET',
+            }),
+        }),
         updateDepartment: builder.mutation({
             query: ({ uuid, ...changes }) => ({
                 url: `/departments/${uuid}`,
@@ -52,6 +58,7 @@ const departmentApi = geselaApi.injectEndpoints({
 export const {
     useCreateDepartmentMutation,
     useGetDepartmentsQuery,
+    useGetStatsQuery,
     useUpdateDepartmentMutation,
     useDeleteDepartmentMutation,
 } = departmentApi;
