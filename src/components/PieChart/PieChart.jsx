@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 export const CHART_COLORS = {
     PENDING: '#ce8e88',
-    'IN-PROGRESS': '#caeff4',
+    IN_PROGRESS: '#caeff4',
     CLOSED: '#93c2cc',
 };
 
@@ -37,6 +37,12 @@ const PieChart = ({ data }) => {
 
             startAngle += sliceAngle;
         }
+
+        context.beginPath();
+        context.arc(centerX, centerY, radius + 2, 0, 2 * Math.PI);
+        context.strokeStyle = '#dddddd';
+        context.lineWidth = 2;
+        context.stroke();
     }, [data]);
 
     return <canvas ref={canvasRef} width={150} height={150} />;
