@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PieChart, { CHART_COLORS } from '../PieChart/PieChart';
 import './ReportCard.css';
 
@@ -12,7 +12,7 @@ const ReportCard = (props) => {
                     <div className="report-data-container">
                         <div className="report-data">
                             {Object.entries(props.data).map(([key, value]) => (
-                                <>
+                                <Fragment key={key}>
                                     <div className="report-data-value">
                                         {value}
                                     </div>
@@ -25,7 +25,7 @@ const ReportCard = (props) => {
                                         ></span>
                                         {key}
                                     </div>
-                                </>
+                                </Fragment>
                             ))}
                         </div>
                     </div>
