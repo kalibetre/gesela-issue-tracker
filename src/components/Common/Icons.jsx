@@ -135,6 +135,16 @@ export const ErrorIcon = () => {
     );
 };
 
+export const ReportIcon = () => {
+    return (
+        <img
+            style={{ width: '100%', height: '100%' }}
+            src="/images/piechart.svg"
+            alt="Error Icon"
+        />
+    );
+};
+
 export const ICONS = {
     issues: <IssuesIcon />,
     notifications: <NotificationsIcon />,
@@ -150,4 +160,5 @@ export const ICONS = {
     spinner: <SpinnerIcon />,
     plus: <PlusIcon />,
     error: <ErrorIcon />,
+    report: <ReportIcon />,
 };
