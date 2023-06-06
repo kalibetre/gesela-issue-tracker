@@ -24,10 +24,16 @@ export const filterByAttribute = (data, attribute, value) => {
 };
 
 const DATE_OPTIONS = { year: 'numeric', month: 'short', day: 'numeric' };
+const DATETIME_OPTIONS = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
 
 export const getFormattedDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', DATE_OPTIONS);
+};
+
+export const getFormattedDateTime = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', DATETIME_OPTIONS);
 };
 
 export const deleteToken = () => {
