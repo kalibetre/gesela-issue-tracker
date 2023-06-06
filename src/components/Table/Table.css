@@ -26,7 +26,7 @@
 }
 
 .data-table tr:hover {
-	background-color: rgba(0, 128, 128, 0.1);
+	background-color: rgba(0, 128, 128, 0.15);
 }
 
 .row-highlight {
