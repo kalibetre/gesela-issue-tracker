@@ -84,6 +84,15 @@ const router = createBrowserRouter([
                     />
                 ),
             },
+            {
+                path: 'submitted',
+                element: (
+                    <Issues
+                        title="Submitted Issues"
+                        filter={(issue) => issue.status === 'SUBMITTED'}
+                    />
+                ),
+            },
         ],
     },
     {
