@@ -1,23 +1,27 @@
 import React from 'react';
+import { useGetStatsQuery } from '../../api/departmentApi';
 import ReportCard from '../ReportCard/ReportCard';
+import StatusMessage from '../StatusMessage/StatusMessage';
 import Workspace from '../Workspace/Workspace';
 
 const Report = () => {
-    const data = {
-        PENDING: 50,
-        'IN-PROGRESS': 152,
-        CLOSED: 220,
-    };
+    const { data, isLoading, isError } = useGetStatsQuery();
 
     return (
         <Workspace title="Report">
-            <div className="card-list-container">
-                <div className="card-list">
-                    {[1, 2, 3].map((i) => (
-                        <ReportCard key={i} data={data} />
-                    ))}
+            {isLoading || data === undefined ? (
+                <StatusMessage loading title="Loading reports ..." />
+            ) : isError ? (
+                <StatusMessage error title="Error reports ..." />
+            ) : (
+                <div className="card-list-container">
+                    <div className="card-list">
+                        {Object.keys(data).map((key, idx) => (
+                            <ReportCard key={idx} data={data[key]} />
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
         </Workspace>
     );
 };
