@@ -14,7 +14,7 @@ import {
     isOwner,
     isSubmitted,
 } from '../../utils/issue';
-import { getStatusCSSClass } from '../../utils/utils';
+import { getFormattedDateTime, getStatusCSSClass } from '../../utils/utils';
 import AssignIssueModal from '../AssignIssueModal/AssignIssueModal';
 import EditIssueModal from '../EditIssueModal/EditIssueModal';
 import Modal from '../Modal/Modal';
@@ -22,6 +22,9 @@ import './IssueDetail.css';
 
 const IssueDetail = (props) => {
     const { issue } = props;
+    const notifications = [...issue.notifications].sort(
+        (a, b) => new Date(a.date) - new Date(b.date)
+    );
     const { data: currentUser } = useGetProfileQuery();
     const [openEdit, setOpenEdit] = useState(false);
     const [openAssignIssue, setOpenAssignIssue] = useState(false);
@@ -205,17 +208,26 @@ const IssueDetail = (props) => {
                         Notifications
                     </p>
                     <div className="isu-detail-events">
-                        {issue.notifications
-                            ? issue.notifications.map((notification, idx) => (
+                        {notifications
+                            ? notifications.map((notification, idx) => (
                                   <div key={idx} className="isu-notification">
                                       <div className="isu-notification-card">
                                           <span className="big-dot"></span>
                                           <span className="connect-line"></span>
                                           <div className="isu-notification-card-content">
                                               <div className="isu-notification-hdr">
-                                                  <p>{notification.user}</p>
+                                                  <p>
+                                                      {
+                                                          notification.fromUser
+                                                              .name
+                                                      }
+                                                  </p>
                                                   <span className="dot"></span>
-                                                  <p>{notification.date}</p>
+                                                  <p>
+                                                      {getFormattedDateTime(
+                                                          notification.date
+                                                      )}
+                                                  </p>
                                               </div>
                                               <div className="isu-notification-msg">
                                                   {notification.message}
