@@ -46,7 +46,7 @@ function App() {
                 {currentUser && currentUser.role === 'ISSUE_MANAGER' && (
                     <LinkButton
                         to="/issues/submitted"
-                        icon={ICONS.issues}
+                        icon={ICONS.submitted}
                         label="Submitted Issues"
                     />
                 )}

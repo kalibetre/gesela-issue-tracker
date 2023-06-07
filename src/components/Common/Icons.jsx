@@ -145,6 +145,16 @@ export const ReportIcon = () => {
     );
 };
 
+export const SubmittedIcon = () => {
+    return (
+        <img
+            style={{ width: '100%', height: '100%' }}
+            src="/images/submitted.svg"
+            alt="Error Icon"
+        />
+    );
+};
+
 export const ICONS = {
     issues: <IssuesIcon />,
     notifications: <NotificationsIcon />,
@@ -161,4 +171,5 @@ export const ICONS = {
     plus: <PlusIcon />,
     error: <ErrorIcon />,
     report: <ReportIcon />,
+    submitted: <SubmittedIcon />,
 };
