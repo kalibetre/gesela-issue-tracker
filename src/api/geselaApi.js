@@ -17,6 +17,4 @@ const geselaApi = createApi({
     endpoints: () => ({}),
 });
 
-export const {} = geselaApi;
-
 export default geselaApi;
