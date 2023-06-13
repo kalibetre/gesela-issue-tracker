@@ -25,7 +25,7 @@ const ReportCard = (props) => {
                                                     CHART_COLORS[key],
                                             }}
                                         ></span>
-                                        {key}
+                                        {key.replace('_', ' ')}
                                     </div>
                                 </Fragment>
                             ))}
