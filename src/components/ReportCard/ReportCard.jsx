@@ -3,15 +3,17 @@ import PieChart, { CHART_COLORS } from '../PieChart/PieChart';
 import './ReportCard.css';
 
 const ReportCard = (props) => {
+    const { department, data } = props;
+
     return (
         <div className="report-card">
             <div className="report-container">
                 <div className="report-stats">
                     <div className="report-subtitle">Department</div>
-                    <div className="report-title">Administration</div>
+                    <div className="report-title">{department}</div>
                     <div className="report-data-container">
                         <div className="report-data">
-                            {Object.entries(props.data).map(([key, value]) => (
+                            {Object.entries(data).map(([key, value]) => (
                                 <Fragment key={key}>
                                     <div className="report-data-value">
                                         {value}

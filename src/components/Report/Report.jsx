@@ -17,7 +17,11 @@ const Report = () => {
                 <div className="card-list-container">
                     <div className="card-list">
                         {Object.keys(data).map((key, idx) => (
-                            <ReportCard key={idx} data={data[key]} />
+                            <ReportCard
+                                key={idx}
+                                department={key}
+                                data={data[key]}
+                            />
                         ))}
                     </div>
                 </div>
