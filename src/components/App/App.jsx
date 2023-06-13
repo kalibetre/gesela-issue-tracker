@@ -106,7 +106,6 @@ function App() {
             </LinkGroup>
             <LinkGroup title="Others">
                 <LinkButton to="/help" icon={ICONS.help} label="Help" />
-                <LinkButton to="/about" icon={ICONS.about} label="About" />
             </LinkGroup>
         </SideBar>
     );
