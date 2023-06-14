@@ -79,7 +79,14 @@
 .av-menu-actions {
 	display: flex;
 	justify-content: flex-end;
-	align-items: center;
-	padding: 20px 0px 0px 40%;
+	align-items: flex-end;
+	gap: 10px;
 	height: 48px;
+	width: 100%;
+}
+
+.av-menu-action {
+	flex-grow: 1;
+	max-width: 50%;
+	height: 30px;
 }
