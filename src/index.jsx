@@ -9,6 +9,7 @@ import Customers from './components/Customers/Customers';
 import Departments from './components/Departments/Departments';
 import Employees from './components/Employees/Employees';
 import ErrorPage from './components/ErrorPage/ErrorPage';
+import Help from './components/Help/Help';
 import Issues from './components/Issues/Issues';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import Notifications from './components/Notifications/Notifications';
@@ -158,6 +159,17 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <Report />,
+            },
+        ],
+    },
+    {
+        path: 'help',
+        element: <App />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: '',
+                element: <Help />,
             },
         ],
     },

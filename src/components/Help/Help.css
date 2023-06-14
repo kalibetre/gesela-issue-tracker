@@ -1,0 +1,27 @@
+.help-content {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 100%;
+	height: 100%;
+	padding: 15px;
+	overflow: auto;
+	background-color: white;
+	border: 1px solid #eee;
+}
+
+.help-content h1 {
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+.help-content img {
+	width: 500px;
+	margin: 15px;
+}
+
+@media screen and (max-width: 768px) {
+	.help-content img {
+		width: 100%;
+	}
+}
