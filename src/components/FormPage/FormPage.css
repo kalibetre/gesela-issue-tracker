@@ -79,6 +79,12 @@
 	color: rgb(58, 64, 64);
 }
 
+.alert-success {
+	background-color: rgba(143, 221, 168, 0.479);
+	border-color: rgb(50, 152, 108);
+	color: rgb(58, 64, 64);
+}
+
 @media screen and (max-width: 600px) {
 	.mc-modal {
 		width: 100%;
