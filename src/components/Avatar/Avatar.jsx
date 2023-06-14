@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useGetProfileQuery } from '../../api/userApi';
 import { getInitials } from '../../utils/utils';
 import Button from '../Button/Button';
+import SettingsModal from '../SettingsModal/SettingsModal';
 import './Avatar.css';
 
 const Avatar = () => {
     const { data: currentUser } = useGetProfileQuery();
     const [open, setOpen] = useState(false);
+    const [settingModalOpen, setSettingModalOpen] = useState(false);
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -16,6 +18,12 @@ const Avatar = () => {
 
     return (
         <div className="av-container">
+            {settingModalOpen && (
+                <SettingsModal
+                    currentUser={currentUser}
+                    handleClose={() => setSettingModalOpen(false)}
+                />
+            )}
             <div className="av-initial" onClick={() => setOpen(!open)}>
                 {currentUser ? getInitials(currentUser.name) : ''}
             </div>
@@ -28,13 +36,27 @@ const Avatar = () => {
                         <h3>{currentUser ? currentUser.name : ''}</h3>
                         <p>{currentUser ? currentUser.email : ''}</p>
                         <div className="av-menu-actions">
-                            <Button
-                                type="button"
-                                onClick={handleLogout}
-                                className="btn btn-default"
-                            >
-                                LogOut
-                            </Button>
+                            <div className="av-menu-action">
+                                <Button
+                                    type="button"
+                                    onClick={() => {
+                                        setSettingModalOpen(true);
+                                        setOpen(false);
+                                    }}
+                                    className="btn btn-default"
+                                >
+                                    Settings
+                                </Button>
+                            </div>
+                            <div className="av-menu-action">
+                                <Button
+                                    type="button"
+                                    onClick={handleLogout}
+                                    className="btn btn-default"
+                                >
+                                    LogOut
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
