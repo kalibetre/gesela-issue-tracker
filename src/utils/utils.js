@@ -8,6 +8,9 @@ export const getInitials = (name) => {
 };
 
 export const groupByAttribute = (data, attributeName) => {
+    if (attributeName == null)
+        return { 'ALL': data }
+    
     const groups = {};
     for (const issue of data) {
         const attributeValue = issue[attributeName];
