@@ -44,7 +44,6 @@ const SettingsModal = (props) => {
                 phone,
             }).unwrap();
         } catch (error) {
-            console.log(error.data.errors);
             setErrors({
                 server: error.data.errors,
             });
