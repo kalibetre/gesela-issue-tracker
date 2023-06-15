@@ -9,7 +9,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/kalibetre/gesela-issue-tracker">
-    <img src="docs/images/logo.png" alt="Logo" width="80" height="80">
+    <img src="public/images/logo.png" alt="Logo" width="80" height="80">
   </a>
   <h3 align="center">Gesela</h3></h3>
 
@@ -30,7 +30,7 @@
 
 ## About The Project
 
-<img src="docs/images/gesela.png" alt="Gesela Screen Shot" width="100%">
+<img src="public/docs/gesela.png" alt="Gesela Screen Shot" width="100%">
 
 Gesela is an Enterprise Issue Tracking and Management system specifically designed for service-based organizations, with a focus on those in developing countries like Ethiopia.
 
@@ -41,7 +41,11 @@ Its main features are:
 -   Provides report to the organization to visualize the effectiveness of various departments
 -   Provides notifications in each step of the issues life cycle allowing for better transparency
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JVkEkr-wv7Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=JVkEkr-wv7Q">
+         <img src="https://img.youtube.com/vi/JVkEkr-wv7Q/0.jpg"  style="width:100%;">
+      </a>
+</div>
 
 ### Built With
 
