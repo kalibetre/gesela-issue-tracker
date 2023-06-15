@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { CloseIcon } from '../Common/Icons';
 import './Workspace.css';
 
 const Workspace = (props) => {
@@ -30,7 +31,7 @@ const Workspace = (props) => {
                                     className="wks-clear-btn"
                                     onClick={clearSearchInput}
                                 >
-                                    &times;
+                                    <CloseIcon />
                                 </button>
                             </div>
                         </div>

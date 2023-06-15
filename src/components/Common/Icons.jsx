@@ -155,6 +155,16 @@ export const SubmittedIcon = () => {
     );
 };
 
+export const CloseIcon = () => {
+    return (
+        <img
+            style={{ width: '100%', height: '100%' }}
+            src="/images/close-icon.svg"
+            alt="Close Icon"
+        />
+    );
+};
+
 export const ICONS = {
     issues: <IssuesIcon />,
     notifications: <NotificationsIcon />,
@@ -172,4 +182,5 @@ export const ICONS = {
     error: <ErrorIcon />,
     report: <ReportIcon />,
     submitted: <SubmittedIcon />,
+    close: <CloseIcon />,
 };
