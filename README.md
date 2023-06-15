@@ -41,11 +41,13 @@ Its main features are:
 -   Provides report to the organization to visualize the effectiveness of various departments
 -   Provides notifications in each step of the issues life cycle allowing for better transparency
 
-<div align="center">
+<div align="left">
       <a href="https://www.youtube.com/watch?v=JVkEkr-wv7Q">
-         <img src="https://img.youtube.com/vi/JVkEkr-wv7Q/0.jpg"  style="width:100%;">
+         <img src="public/docs/geseal_youtube.png"  style="width:60%;">
       </a>
 </div>
+
+---
 
 ### Built With
 
