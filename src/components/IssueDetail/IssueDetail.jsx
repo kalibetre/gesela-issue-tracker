@@ -14,7 +14,7 @@ import {
     isOwner,
     isSubmitted,
 } from '../../utils/issue';
-import { getFormattedDateTime, getStatusCSSClass } from '../../utils/utils';
+import { getFormattedDate, getStatusCSSClass } from '../../utils/utils';
 import AssignIssueModal from '../AssignIssueModal/AssignIssueModal';
 import EditIssueModal from '../EditIssueModal/EditIssueModal';
 import Modal from '../Modal/Modal';
@@ -224,7 +224,7 @@ const IssueDetail = (props) => {
                                                   </p>
                                                   <span className="dot"></span>
                                                   <p>
-                                                      {getFormattedDateTime(
+                                                      {getFormattedDate(
                                                           notification.date
                                                       )}
                                                   </p>
