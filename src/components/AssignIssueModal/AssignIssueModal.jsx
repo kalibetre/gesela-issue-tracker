@@ -96,6 +96,7 @@ const AssignIssueModal = (props) => {
                         onChange={handleDeptSelection}
                         disabled={isLoading || loadingDepts}
                     >
+                        <Option>Select a department</Option>
                         {departments &&
                             departments.map((department) => (
                                 <Option
