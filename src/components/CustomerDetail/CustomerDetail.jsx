@@ -5,11 +5,13 @@ import {
 } from '../../api/customerApi';
 import { Input, Option, Select } from '../InputControls/InputControls';
 import Modal from '../Modal/Modal';
+import PasswordResetModal from '../PasswordResetModal/PasswordResetModal';
 
 const ACCOUNT_STATUS = ['ACTIVE', 'BLOCKED', 'ARCHIVED'];
 
 const CustomerDetail = (props) => {
     const [customer, setCustomer] = useState(props.customer);
+    const [pwdResetModalOpen, setPwdResetModalOpen] = useState(false);
     const [errors, setErrors] = useState([]);
 
     const [updateCustomer, { isLoading: updateLoading, isError: updateError }] =
@@ -65,7 +67,13 @@ const CustomerDetail = (props) => {
     };
 
     return (
-        <form onSubmit={(e) => e.preventDefault()}>
+        <>
+            {pwdResetModalOpen && (
+                <PasswordResetModal
+                    userId={customer.uuid}
+                    handleClose={() => setPwdResetModalOpen(false)}
+                />
+            )}
             <Modal
                 title="Customer Detail"
                 handleClose={props.handleClose}
@@ -84,6 +92,13 @@ const CustomerDetail = (props) => {
                             onClick={handleDelete}
                         >
                             Delete
+                        </button>
+                        <button
+                            className="btn btn-danger"
+                            disabled={updateLoading || deleteLoading}
+                            onClick={() => setPwdResetModalOpen(true)}
+                        >
+                            Reset Password
                         </button>
                         <button
                             className="btn btn-primary"
@@ -176,7 +191,7 @@ const CustomerDetail = (props) => {
                         </div>
                     ))}
             </Modal>
-        </form>
+        </>
     );
 };
 

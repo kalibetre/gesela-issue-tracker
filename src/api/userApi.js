@@ -70,6 +70,13 @@ const userApi = geselaApi.injectEndpoints({
             }),
             invalidatesTags: (result, error, { id }) => [{ type: 'Users', id }],
         }),
+        resetPassword: builder.mutation({
+            query: (id) => ({
+                url: `/users/${id}/reset-password`,
+                method: 'PUT',
+            }),
+            invalidatesTags: (result, error, { id }) => [{ type: 'Users', id }],
+        }),
     }),
 });
 
@@ -81,6 +88,7 @@ export const {
     useUpdateProfileMutation,
     useUpdateUserMutation,
     useChangeRoleMutation,
+    useResetPasswordMutation,
 } = userApi;
 
 export default userApi;

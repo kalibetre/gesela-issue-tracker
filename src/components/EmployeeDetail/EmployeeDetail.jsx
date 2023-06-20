@@ -8,6 +8,7 @@ import {
 import { useGetProfileQuery, useGetRolesQuery } from '../../api/userApi';
 import { Input, Option, Select } from '../InputControls/InputControls';
 import Modal from '../Modal/Modal';
+import PasswordResetModal from '../PasswordResetModal/PasswordResetModal';
 
 const EmployeeDetail = (props) => {
     const { data: currentUser } = useGetProfileQuery();
@@ -15,6 +16,7 @@ const EmployeeDetail = (props) => {
     const [password, setPassword] = useState('');
     const [rptPassword, setRptPassword] = useState('');
     const [errors, setErrors] = useState({});
+    const [pwdResetModalOpen, setPwdResetModalOpen] = useState(false);
 
     const [updateEmployee, { isLoading: updateLoading, isError: updateError }] =
         useUpdateEmployeeMutation();
@@ -93,13 +95,18 @@ const EmployeeDetail = (props) => {
             return;
         }
     };
-
     const isAdmin = currentUser && currentUser.role === 'ADMIN';
     const isReadOnly =
         updateLoading || deleteLoading || createLoading || !isAdmin;
 
     return (
-        <form onSubmit={(e) => e.preventDefault()}>
+        <>
+            {pwdResetModalOpen && (
+                <PasswordResetModal
+                    userId={employee.uuid}
+                    handleClose={() => setPwdResetModalOpen(false)}
+                />
+            )}
             <Modal
                 title="Employee Detail"
                 handleClose={props.handleClose}
@@ -129,17 +136,30 @@ const EmployeeDetail = (props) => {
                             </button>
                         )}
                         {isAdmin && (
-                            <button
-                                className="btn btn-primary"
-                                disabled={
-                                    updateLoading ||
-                                    deleteLoading ||
-                                    createLoading
-                                }
-                                onClick={handleSave}
-                            >
-                                Save
-                            </button>
+                            <>
+                                <button
+                                    className="btn btn-danger"
+                                    disabled={
+                                        updateLoading ||
+                                        deleteLoading ||
+                                        createLoading
+                                    }
+                                    onClick={() => setPwdResetModalOpen(true)}
+                                >
+                                    Reset Password
+                                </button>
+                                <button
+                                    className="btn btn-primary"
+                                    disabled={
+                                        updateLoading ||
+                                        deleteLoading ||
+                                        createLoading
+                                    }
+                                    onClick={handleSave}
+                                >
+                                    Save
+                                </button>
+                            </>
                         )}
                     </>
                 }
@@ -296,7 +316,7 @@ const EmployeeDetail = (props) => {
                     </div>
                 )}
             </Modal>
-        </form>
+        </>
     );
 };
 
