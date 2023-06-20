@@ -46,19 +46,24 @@ const DepartmentDetail = (props) => {
         event.preventDefault();
         if (!checkValidation()) return;
         try {
-            if (department.uuid === 'new') {
-                await createDepartment({
-                    name,
-                    description,
-                }).unwrap();
-            } else {
-                await updateDepartment({
-                    uuid: department.uuid,
-                    name,
-                    description,
-                }).unwrap();
+            const result = window.confirm(
+                'Are you sure you want to save this department?'
+            );
+            if (result) {
+                if (department.uuid === 'new') {
+                    await createDepartment({
+                        name,
+                        description,
+                    }).unwrap();
+                } else {
+                    await updateDepartment({
+                        uuid: department.uuid,
+                        name,
+                        description,
+                    }).unwrap();
+                }
+                props.handleClose();
             }
-            props.handleClose();
         } catch (error) {
             if (error.data?.message?.toLowerCase().includes('validation')) {
                 setErrors(error.data.errors);
@@ -69,8 +74,13 @@ const DepartmentDetail = (props) => {
     const handleDelete = async (event) => {
         event.preventDefault();
         try {
-            await deleteDepartment(department.uuid).unwrap();
-            props.handleClose();
+            const result = window.confirm(
+                'Are you sure you want to delete this department?'
+            );
+            if (result) {
+                await deleteDepartment(department.uuid).unwrap();
+                props.handleClose();
+            }
         } catch (error) {
             return;
         }

@@ -43,11 +43,16 @@ const IssueDetail = (props) => {
         e.preventDefault();
         try {
             if (issue) {
-                await updateIssue({
-                    uuid: issue.uuid,
-                    status: 'SUBMITTED',
-                }).unwrap();
-                props.handleClose();
+                const result = window.confirm(
+                    'Are you sure you want to submit this issue?'
+                );
+                if (result) {
+                    await updateIssue({
+                        uuid: issue.uuid,
+                        status: 'SUBMITTED',
+                    }).unwrap();
+                    props.handleClose();
+                }
             }
         } catch (e) {
             setError('Unable to submit the issue.');
@@ -58,8 +63,13 @@ const IssueDetail = (props) => {
         e.preventDefault();
         try {
             if (issue) {
-                await deleteIssue(issue.uuid).unwrap();
-                props.handleClose();
+                const result = window.confirm(
+                    'Are you sure you want to delete this issue?'
+                );
+                if (result) {
+                    await deleteIssue(issue.uuid).unwrap();
+                    props.handleClose();
+                }
             }
         } catch (e) {
             setError('Unable to delete the issue');
@@ -70,8 +80,13 @@ const IssueDetail = (props) => {
         e.preventDefault();
         try {
             if (issue) {
-                await archiveIssue(issue.uuid).unwrap();
-                props.handleClose();
+                const result = window.confirm(
+                    'Are you sure you want to archive this issue?'
+                );
+                if (result) {
+                    await archiveIssue(issue.uuid).unwrap();
+                    props.handleClose();
+                }
             }
         } catch (e) {
             setError('Unable to archive the issue.');
@@ -82,8 +97,13 @@ const IssueDetail = (props) => {
         e.preventDefault();
         try {
             if (issue) {
-                await restoreIssue(issue.uuid).unwrap();
-                props.handleClose();
+                const result = window.confirm(
+                    'Are you sure you want to restore this issue from archive?'
+                );
+                if (result) {
+                    await restoreIssue(issue.uuid).unwrap();
+                    props.handleClose();
+                }
             }
         } catch (e) {
             setError('Unable to restore the issue.');
@@ -92,8 +112,6 @@ const IssueDetail = (props) => {
 
     const disableActions =
         isUpdating || isDeleting || isArchiving || isRestoring;
-
-    console.log(issue);
 
     return (
         <Modal

@@ -29,6 +29,11 @@ const ChangePasswordModal = (props) => {
     const handleUpdate = async (event) => {
         event.preventDefault();
         try {
+            const result = window.confirm(
+                'Are you sure you want to change your password?'
+            );
+            if (!result) return;
+
             setErrors({});
             let validationErrors = checkValidation();
             if (Object.keys(validationErrors).length > 0) {

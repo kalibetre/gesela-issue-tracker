@@ -32,6 +32,10 @@ const SettingsModal = (props) => {
     const handleSave = async (event) => {
         event.preventDefault();
         try {
+            const result = window.confirm(
+                'Are you sure you want to update your profile?'
+            );
+            if (!result) return;
             setErrors({});
             let validationErrors = checkValidation();
             if (Object.keys(validationErrors).length > 0) {

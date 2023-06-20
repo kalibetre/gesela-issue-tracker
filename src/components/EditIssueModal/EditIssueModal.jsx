@@ -44,6 +44,11 @@ const EditIssueModal = (props) => {
     const handleSave = async (e, isSubmitted = false) => {
         e.preventDefault();
         try {
+            const result = window.confirm(
+                'Are you sure you want to save this issue?'
+            );
+            if (!result) return;
+
             let validationErrors = checkValidation();
             if (Object.keys(validationErrors).length > 0) {
                 setErrors({ ...validationErrors });

@@ -51,6 +51,11 @@ const EmployeeDetail = (props) => {
     const handleSave = async (event) => {
         event.preventDefault();
         try {
+            const result = window.confirm(
+                'Are you sure you want to save this employee?'
+            );
+            if (!result) return;
+
             let validationErrors = checkValidation();
             if (Object.keys(validationErrors).length > 0) {
                 setErrors({ ...validationErrors });
@@ -89,8 +94,13 @@ const EmployeeDetail = (props) => {
     const handleDelete = async (event) => {
         event.preventDefault();
         try {
-            await deleteEmployee(employee.uuid).unwrap();
-            props.handleClose();
+            const result = window.confirm(
+                'Are you sure you want to delete this employee?'
+            );
+            if (result) {
+                await deleteEmployee(employee.uuid).unwrap();
+                props.handleClose();
+            }
         } catch (error) {
             return;
         }
