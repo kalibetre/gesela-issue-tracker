@@ -37,7 +37,7 @@ const EmployeeDetail = (props) => {
         if (!employee.phone) {
             validationErrors.phone = 'Phone is required';
         }
-        if (!password) {
+        if (employee.uuid === 'new' && !password) {
             validationErrors.password = 'Password is required';
         }
         if (employee.uuid === 'new' && password !== rptPassword) {
