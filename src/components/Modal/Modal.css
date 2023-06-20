@@ -80,6 +80,7 @@
 	flex-grow: 1;
 	height: 100%;
 	font-size: 14px;
+	max-width: 200px;
 }
 
 @media screen and (max-width: 600px) {
@@ -91,5 +92,9 @@
 	.modal-footer {
 		flex-direction: column-reverse;
 		height: auto;
+	}
+
+	.modal-footer button {
+		max-width: 100%;
 	}
 }
