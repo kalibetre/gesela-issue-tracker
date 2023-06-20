@@ -136,7 +136,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <Employees />,
+                element: <Employees groupBy="role" />,
             },
         ],
     },
