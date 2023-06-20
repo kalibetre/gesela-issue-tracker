@@ -41,14 +41,16 @@ const CustomerDetail = (props) => {
         event.preventDefault();
         if (!checkValidation()) return;
         try {
-            await updateCustomer({
-                uuid: customer.uuid,
-                name: customer.name,
-                email: customer.email,
-                phone: customer.phone,
-                accountStatus: customer.accountStatus,
-            }).unwrap();
-            props.handleClose();
+            const result = window.confirm(
+                'Are you sure you want to update this customer?'
+            );
+            if (result) {
+                await updateCustomer({
+                    uuid: customer.uuid,
+                    accountStatus: customer.accountStatus,
+                }).unwrap();
+                props.handleClose();
+            }
         } catch (error) {
             if (error.data?.message?.toLowerCase().includes('validation')) {
                 setErrors(error.data.errors);
@@ -59,8 +61,13 @@ const CustomerDetail = (props) => {
     const handleDelete = async (event) => {
         event.preventDefault();
         try {
-            await deleteCustomer(customer.uuid).unwrap();
-            props.handleClose();
+            const result = window.confirm(
+                'Are you sure you want to update this customer?'
+            );
+            if (result) {
+                await deleteCustomer(customer.uuid).unwrap();
+                props.handleClose();
+            }
         } catch (error) {
             return;
         }
@@ -116,7 +123,7 @@ const CustomerDetail = (props) => {
                     id="cus-name"
                     label="Name"
                     value={customer.name}
-                    disabled={updateLoading || deleteLoading}
+                    disabled={true}
                     onChange={(event) =>
                         setCustomer((prev) => ({
                             ...prev,
@@ -130,7 +137,7 @@ const CustomerDetail = (props) => {
                     id="cus-email"
                     label="Email"
                     value={customer.email}
-                    disabled={updateLoading || deleteLoading}
+                    disabled={true}
                     onChange={(event) =>
                         setCustomer((prev) => ({
                             ...prev,
@@ -144,7 +151,7 @@ const CustomerDetail = (props) => {
                     id="cus-phone"
                     label="Phone"
                     value={customer.phone}
-                    disabled={updateLoading || deleteLoading}
+                    disabled={true}
                     onChange={(event) =>
                         setCustomer((prev) => ({
                             ...prev,
