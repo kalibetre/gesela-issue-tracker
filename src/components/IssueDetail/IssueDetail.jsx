@@ -12,6 +12,7 @@ import {
     isHandler,
     isManager,
     isOwner,
+    isPending,
     isSubmitted,
 } from '../../utils/issue';
 import { getFormattedDate, getStatusCSSClass } from '../../utils/utils';
@@ -92,6 +93,8 @@ const IssueDetail = (props) => {
     const disableActions =
         isUpdating || isDeleting || isArchiving || isRestoring;
 
+    console.log(issue);
+
     return (
         <Modal
             title="Issue Detail"
@@ -154,15 +157,16 @@ const IssueDetail = (props) => {
                                 Edit
                             </button>
                         )}
-                    {isManager(currentUser) && isSubmitted(issue) && (
-                        <button
-                            className="btn btn-primary"
-                            disabled={disableActions}
-                            onClick={(e) => setOpenAssignIssue(true)}
-                        >
-                            Assign
-                        </button>
-                    )}
+                    {isManager(currentUser) &&
+                        (isSubmitted(issue) || isPending(issue)) && (
+                            <button
+                                className="btn btn-primary"
+                                disabled={disableActions}
+                                onClick={(e) => setOpenAssignIssue(true)}
+                            >
+                                {isPending(issue) ? 'Re-Assign' : 'Assign'}
+                            </button>
+                        )}
                 </>
             }
         >

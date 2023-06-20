@@ -4,6 +4,8 @@ export const isSubmitted = (issue) => issue && issue.status === 'SUBMITTED';
 
 export const isClosed = (issue) => issue && issue.status === 'CLOSED';
 
+export const isPending = (issue) => issue && issue.status === 'PENDING';
+
 export const isOwner = (issue, user) =>
     issue && user && issue.raisedBy?.uuid === user.uuid;
 
