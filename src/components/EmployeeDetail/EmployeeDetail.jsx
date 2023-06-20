@@ -121,14 +121,13 @@ const EmployeeDetail = (props) => {
                         >
                             Close
                         </button>
-                        {isAdmin && (
+                        {isAdmin && employee.uuid !== 'new' && (
                             <button
                                 className="btn btn-danger"
                                 disabled={
                                     updateLoading ||
                                     deleteLoading ||
-                                    createLoading ||
-                                    employee.uuid === 'new'
+                                    createLoading
                                 }
                                 onClick={handleDelete}
                             >
@@ -137,17 +136,21 @@ const EmployeeDetail = (props) => {
                         )}
                         {isAdmin && (
                             <>
-                                <button
-                                    className="btn btn-danger"
-                                    disabled={
-                                        updateLoading ||
-                                        deleteLoading ||
-                                        createLoading
-                                    }
-                                    onClick={() => setPwdResetModalOpen(true)}
-                                >
-                                    Reset Password
-                                </button>
+                                {employee.uuid !== 'new' && (
+                                    <button
+                                        className="btn btn-danger"
+                                        disabled={
+                                            updateLoading ||
+                                            deleteLoading ||
+                                            createLoading
+                                        }
+                                        onClick={() =>
+                                            setPwdResetModalOpen(true)
+                                        }
+                                    >
+                                        Reset Password
+                                    </button>
+                                )}
                                 <button
                                     className="btn btn-primary"
                                     disabled={
