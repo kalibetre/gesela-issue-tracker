@@ -50,8 +50,9 @@ const Issues = (props) => {
             else {
                 const filterWithTerm = (issue) =>
                     filterBy(issue) &&
-                    (issue.title.includes(term) ||
-                        issue.description.includes(term));
+                    (issue.title + ' ' + issue.description + ' ' + issue.status)
+                        .toLowerCase()
+                        .includes(term.toLowerCase());
                 setGroupedIssues(
                     groupByAttribute(issues.filter(filterWithTerm), groupBy)
                 );
