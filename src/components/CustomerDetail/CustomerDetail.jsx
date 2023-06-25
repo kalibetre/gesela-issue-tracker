@@ -19,27 +19,8 @@ const CustomerDetail = (props) => {
     const [deleteCustomer, { isLoading: deleteLoading, isError: deleteError }] =
         useDeleteCustomerMutation();
 
-    const checkValidation = () => {
-        let validationErrors = [];
-        if (!customer.name) {
-            validationErrors = [...validationErrors, 'Name is required'];
-        }
-        if (!customer.email) {
-            validationErrors = [...validationErrors, 'Email is required'];
-        }
-        if (!customer.phone) {
-            validationErrors = [...validationErrors, 'Phone is required'];
-        }
-        if (validationErrors.length > 0) {
-            setErrors(validationErrors);
-            return false;
-        }
-        return true;
-    };
-
     const handleSave = async (event) => {
         event.preventDefault();
-        if (!checkValidation()) return;
         try {
             const result = window.confirm(
                 'Are you sure you want to update this customer?'
@@ -124,12 +105,6 @@ const CustomerDetail = (props) => {
                     label="Name"
                     value={customer.name}
                     disabled={true}
-                    onChange={(event) =>
-                        setCustomer((prev) => ({
-                            ...prev,
-                            name: event.target.value,
-                        }))
-                    }
                 />
                 <Input
                     type="email"
@@ -138,12 +113,6 @@ const CustomerDetail = (props) => {
                     label="Email"
                     value={customer.email}
                     disabled={true}
-                    onChange={(event) =>
-                        setCustomer((prev) => ({
-                            ...prev,
-                            email: event.target.value,
-                        }))
-                    }
                 />
                 <Input
                     type="text"
@@ -152,12 +121,6 @@ const CustomerDetail = (props) => {
                     label="Phone"
                     value={customer.phone}
                     disabled={true}
-                    onChange={(event) =>
-                        setCustomer((prev) => ({
-                            ...prev,
-                            phone: event.target.value,
-                        }))
-                    }
                 />
                 <Select
                     id="status"
