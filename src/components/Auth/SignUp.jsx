@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterMutation } from '../../api/authApi';
+import { isPhoneNumberValid } from '../../utils/utils';
 import Button from '../Button/Button';
 import { SpinnerIcon } from '../Common/Icons';
 import FormPage from '../FormPage/FormPage';
@@ -31,8 +32,8 @@ const SignUp = () => {
         if (!email) {
             validationErrors.email = 'Email is required';
         }
-        if (!phone) {
-            validationErrors.phone = 'Phone is required';
+        if (!isPhoneNumberValid(phone)) {
+            validationErrors.phone = 'Valid ETH (+251) Phone is required';
         }
         if (!password) {
             validationErrors.password = 'Password is required';
@@ -52,8 +53,8 @@ const SignUp = () => {
                 return;
             }
             await register({
-                name,
-                email,
+                name: name.trim(),
+                email: email.trim(),
                 phone,
                 password,
             }).unwrap();
@@ -107,7 +108,7 @@ const SignUp = () => {
                 id="phone"
                 label="Phone"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={(e) => setPhone(e.target.value.trim())}
             />
             {errors && errors.phone && (
                 <div className="alert alert-danger" role="alert">

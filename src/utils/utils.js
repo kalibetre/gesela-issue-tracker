@@ -59,3 +59,12 @@ const status_class = {
 export const getStatusCSSClass = (status) => {
     return status_class[status];
 };
+
+export const isPhoneNumberValid = (phoneNumber) => {
+    if (!phoneNumber
+        || !phoneNumber.startsWith('+251')
+        || phoneNumber.length !== 13) return false;
+    let rest = phoneNumber.slice(4)
+    if (rest.length !== 9 || isNaN(phoneNumber)) return false;
+    return true;
+}

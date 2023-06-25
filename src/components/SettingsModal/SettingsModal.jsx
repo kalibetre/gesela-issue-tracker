@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useUpdateProfileMutation } from '../../api/userApi';
+import { isPhoneNumberValid } from '../../utils/utils';
 import { SpinnerIcon } from '../Common/Icons';
 import { Input } from '../InputControls/InputControls';
 import Modal from '../Modal/Modal';
@@ -23,8 +24,8 @@ const SettingsModal = (props) => {
         if (!email) {
             validationErrors.email = 'Email is required';
         }
-        if (!phone) {
-            validationErrors.phone = 'Phone is required';
+        if (!isPhoneNumberValid(phone)) {
+            validationErrors.phone = 'Valid ETH (+251) Phone is required';
         }
         return validationErrors;
     };
@@ -43,8 +44,8 @@ const SettingsModal = (props) => {
                 return;
             }
             await updateProfile({
-                name,
-                email,
+                name: name.trim(),
+                email: email.trim(),
                 phone,
             }).unwrap();
         } catch (error) {
@@ -128,7 +129,7 @@ const SettingsModal = (props) => {
                     id="phone"
                     label="Phone"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => setPhone(e.target.value.trim())}
                     disabled={isLoading}
                 />
                 {errors && errors.phone && (

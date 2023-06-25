@@ -6,6 +6,7 @@ import {
     useUpdateEmployeeMutation,
 } from '../../api/employeeApi';
 import { useGetProfileQuery, useGetRolesQuery } from '../../api/userApi';
+import { isPhoneNumberValid } from '../../utils/utils';
 import { Input, Option, Select } from '../InputControls/InputControls';
 import Modal from '../Modal/Modal';
 import PasswordResetModal from '../PasswordResetModal/PasswordResetModal';
@@ -36,8 +37,8 @@ const EmployeeDetail = (props) => {
         if (!employee.email) {
             validationErrors.email = 'Email is required';
         }
-        if (!employee.phone) {
-            validationErrors.phone = 'Phone is required';
+        if (!isPhoneNumberValid(employee.phone)) {
+            validationErrors.phone = 'Valid ETH (+251) Phone is required';
         }
         if (employee.uuid === 'new' && !password) {
             validationErrors.password = 'Password is required';
@@ -66,8 +67,8 @@ const EmployeeDetail = (props) => {
                     employee.department.uuid = departments[0].uuid;
                 }
                 await createEmployee({
-                    name: employee.name,
-                    email: employee.email,
+                    name: employee.name.trim(),
+                    email: employee.email.trim(),
                     phone: employee.phone,
                     password: password,
                     departmentUuid: employee.department.uuid,
@@ -225,7 +226,7 @@ const EmployeeDetail = (props) => {
                     onChange={(event) =>
                         setEmployee((prev) => ({
                             ...prev,
-                            phone: event.target.value,
+                            phone: event.target.value.trim(),
                         }))
                     }
                 />
