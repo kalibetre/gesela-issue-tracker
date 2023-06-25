@@ -101,7 +101,9 @@ const router = createBrowserRouter([
                     <Issues
                         title="Assigned"
                         wrappedFilter={(user) => (issue) =>
-                            !issue.archived && issue.handler.uuid === user.uuid}
+                            !issue.archived &&
+                            issue.handler.uuid === user.uuid &&
+                            issue.status === 'PENDING'}
                     />
                 ),
             },
