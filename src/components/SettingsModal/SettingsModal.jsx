@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useUpdateProfileMutation } from '../../api/userApi';
-import { isPhoneNumberValid } from '../../utils/utils';
+import { isEmailValid, isPhoneNumberValid } from '../../utils/utils';
 import { SpinnerIcon } from '../Common/Icons';
 import { Input } from '../InputControls/InputControls';
 import Modal from '../Modal/Modal';
@@ -21,8 +21,8 @@ const SettingsModal = (props) => {
         if (!name) {
             validationErrors.name = 'Name is required';
         }
-        if (!email) {
-            validationErrors.email = 'Email is required';
+        if (!isEmailValid(email)) {
+            validationErrors.email = 'Valid Email is required';
         }
         if (!isPhoneNumberValid(phone)) {
             validationErrors.phone = 'Valid ETH (+251) Phone is required';

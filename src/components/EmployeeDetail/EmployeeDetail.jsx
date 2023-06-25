@@ -6,7 +6,7 @@ import {
     useUpdateEmployeeMutation,
 } from '../../api/employeeApi';
 import { useGetProfileQuery, useGetRolesQuery } from '../../api/userApi';
-import { isPhoneNumberValid } from '../../utils/utils';
+import { isEmailValid, isPhoneNumberValid } from '../../utils/utils';
 import { Input, Option, Select } from '../InputControls/InputControls';
 import Modal from '../Modal/Modal';
 import PasswordResetModal from '../PasswordResetModal/PasswordResetModal';
@@ -34,8 +34,8 @@ const EmployeeDetail = (props) => {
         if (!employee.name) {
             validationErrors.name = 'Name is required';
         }
-        if (!employee.email) {
-            validationErrors.email = 'Email is required';
+        if (!isEmailValid(employee.email)) {
+            validationErrors.email = 'Valid Email is required';
         }
         if (!isPhoneNumberValid(employee.phone)) {
             validationErrors.phone = 'Valid ETH (+251) Phone is required';

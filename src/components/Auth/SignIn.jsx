@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../api/authApi';
 import geselaApi from '../../api/geselaApi';
 import Button from '../../components/Button/Button';
-import { deleteToken } from '../../utils/utils';
+import { deleteToken, isEmailValid } from '../../utils/utils';
 import { SpinnerIcon } from '../Common/Icons';
 import FormPage from '../FormPage/FormPage';
 import { Input } from '../InputControls/InputControls';
@@ -25,8 +25,8 @@ const SignIn = () => {
 
     const checkValidation = () => {
         const validationErrors = {};
-        if (!email) {
-            validationErrors.email = 'Email is required';
+        if (!isEmailValid(email)) {
+            validationErrors.email = 'Valid Email is required';
         }
         if (!password) {
             validationErrors.password = 'Password is required';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterMutation } from '../../api/authApi';
-import { isPhoneNumberValid } from '../../utils/utils';
+import { isEmailValid, isPhoneNumberValid } from '../../utils/utils';
 import Button from '../Button/Button';
 import { SpinnerIcon } from '../Common/Icons';
 import FormPage from '../FormPage/FormPage';
@@ -29,14 +29,18 @@ const SignUp = () => {
         if (!name) {
             validationErrors.name = 'Name is required';
         }
-        if (!email) {
-            validationErrors.email = 'Email is required';
+        if (!isEmailValid(email)) {
+            validationErrors.email = 'Valid Email is required';
         }
         if (!isPhoneNumberValid(phone)) {
             validationErrors.phone = 'Valid ETH (+251) Phone is required';
         }
         if (!password) {
             validationErrors.password = 'Password is required';
+        }
+        if (password && password.length < 5) {
+            validationErrors.password =
+                'Password too short. Must be at least 5 characters long';
         }
         if (password !== rptPassword) {
             validationErrors.rptPassword = 'Passwords do not match';

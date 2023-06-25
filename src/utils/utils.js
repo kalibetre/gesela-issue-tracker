@@ -68,3 +68,9 @@ export const isPhoneNumberValid = (phoneNumber) => {
     if (rest.length !== 9 || isNaN(phoneNumber)) return false;
     return true;
 }
+
+export const isEmailValid = (email) => {
+    let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (validRegex.test(email)) return true;
+    return false
+}
