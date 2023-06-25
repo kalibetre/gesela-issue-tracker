@@ -77,17 +77,19 @@ const Employees = (props) => {
                             </div>
                         );
                     })}
-                    <div className="issue-group">
-                        <h2 className="issue-group-title">New</h2>
-                        <div className="card-list">
-                            {isAdmin && (
-                                <Employee
-                                    actionCard
-                                    onClick={handleNewEmployee}
-                                />
-                            )}
+                    {isAdmin && (
+                        <div className="issue-group">
+                            <h2 className="issue-group-title">New</h2>
+                            <div className="card-list">
+                                {isAdmin && (
+                                    <Employee
+                                        actionCard
+                                        onClick={handleNewEmployee}
+                                    />
+                                )}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             )}
         </Workspace>
